@@ -7,3 +7,13 @@ C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Deb
 C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
 C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
 C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb

@@ -7,3 +7,13 @@ C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Rel
 C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.GenerateResource.cache
 C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.exe
 C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.pdb
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe.config
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.pdb
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Inicio.resources
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Properties.Resources.resources
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.exe
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.pdb

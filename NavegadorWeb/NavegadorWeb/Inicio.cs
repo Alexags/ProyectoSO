@@ -19,7 +19,7 @@ namespace NavegadorWeb
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-
+            webBrowser1.Navigate("http://www.google.com");
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,7 +12,13 @@ namespace NavegadorWeb
     {
         static void Main(string[] args)
         {
-            Application.Run(new Inicio());
+            Thread thread = new Thread(() =>
+            {
+
+                Application.Run(new Inicio());
+            });
+            thread.ApartmentState = ApartmentState.STA;
+            thread.Start();
         }
     }
 }

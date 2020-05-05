@@ -24,7 +24,8 @@ namespace NavegadorWeb
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (webBrowser1.CanGoBack)
+                webBrowser1.GoBack();
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -46,9 +47,42 @@ namespace NavegadorWeb
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (webBrowser1.CanGoForward)
+                webBrowser1.GoForward();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Refresh();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            webBrowser1.Stop();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate(textBox1.Text);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            webBrowser1.GoHome();
+        }
+
+        private void Inicio_Resize(object sender, EventArgs e)
+        {
+            webBrowser1.Width = this.Width - 30;
+            webBrowser1.Height = this.Height - 105;
+            tabPage1.Width = this.Width - 17;
+            tabPage1.Height = this.Height - 41;
+            tabControl1.Width = this.Width - 17;
+            tabControl1.Height = this.Height - 41;
         }
     }
 }

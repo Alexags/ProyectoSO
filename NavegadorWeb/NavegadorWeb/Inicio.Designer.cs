@@ -80,7 +80,7 @@
             // button7
             // 
             this.button7.Image = global::NavegadorWeb.Properties.Resources.seo_social_web_network_internet_340_icon_icons_com_61497;
-            this.button7.Location = new System.Drawing.Point(757, 0);
+            this.button7.Location = new System.Drawing.Point(770, 0);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(32, 32);
             this.button7.TabIndex = 2;

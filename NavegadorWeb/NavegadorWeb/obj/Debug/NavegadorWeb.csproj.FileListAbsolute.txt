@@ -17,3 +17,13 @@ C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.cspr
 C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
 C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
 C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb

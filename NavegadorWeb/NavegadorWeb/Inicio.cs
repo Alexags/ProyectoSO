@@ -67,7 +67,7 @@ namespace NavegadorWeb
 
         private void button7_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(textBox1.Text);
+            webBrowser1.Navigate(textBox1.Text); 
         }
 
         private void button4_Click(object sender, EventArgs e)

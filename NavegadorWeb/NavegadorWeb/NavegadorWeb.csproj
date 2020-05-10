@@ -73,23 +73,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\curve.png" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\seo-social-web-network-internet_340_icon-icons.com_61497.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\flcha I.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\flecha D.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\internet %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

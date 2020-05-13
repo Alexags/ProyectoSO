@@ -38,7 +38,6 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.newVentana = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1.SuspendLayout();
@@ -48,7 +47,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.newVentana);
-            this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.button5);
             this.tabPage1.Controls.Add(this.webBrowser1);
@@ -153,17 +151,6 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(9, 170);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 28);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // newVentana
             // 
             this.newVentana.Location = new System.Drawing.Point(1060, 0);
@@ -210,7 +197,6 @@
 
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button newVentana;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.WebBrowser webBrowser1;

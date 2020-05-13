@@ -113,7 +113,7 @@ namespace NavegadorWeb
             TextBox tex = new TextBox();
             WebBrowser newWebBrowser = new WebBrowser();
             Button b = new Button();
-
+            this.tabControl1.SelectedTab = myTabPage;
 
             b.SetBounds(0, 0, 33, 33);
             b.Image = Properties.Resources.flcha_I;
@@ -142,6 +142,7 @@ namespace NavegadorWeb
 
             Button newVenta = new Button();
             newVenta.SetBounds(420, 0, 33, 33);
+            
 
             //TextBox tex = new TextBox();
             tex.Location = new Point(240, 0);

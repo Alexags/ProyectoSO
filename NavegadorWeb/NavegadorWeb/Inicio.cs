@@ -7,19 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+
+
 
 namespace NavegadorWeb
 {
     public partial class Inicio : Form
     {
+        WebClient Client;
         public Inicio()
         {
             InitializeComponent();
+            
+
         }
 
         private void Inicio_Load(object sender, EventArgs e)
         {
             webBrowser1.Navigate("http://www.google.com");
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -83,6 +90,20 @@ namespace NavegadorWeb
             tabPage1.Height = this.Height - 41;
             tabControl1.Width = this.Width - 17;
             tabControl1.Height = this.Height - 41;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            downloadFile();
+        }
+
+        private void downloadFile()
+        {
+            Console.Write("Entra");
+            //string file = System.IO.Path.GetFileName(url);
+            WebClient cln = new WebClient();
+            cln.DownloadFile("https://i1.wp.com/todoimagenescristianas.com/wp-content/uploads/2013/05/imagenes-cristianas-descargar-gratis_9.jpg", @"c:\imagenes-cristianas-descargar-gratis_9.jpg");
+            //cln.DownloadFile(url, file);
         }
     }
 }

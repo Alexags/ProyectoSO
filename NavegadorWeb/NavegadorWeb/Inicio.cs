@@ -144,7 +144,6 @@ namespace NavegadorWeb
             newVenta.SetBounds(420, 0, 33, 33);
             
 
-            //TextBox tex = new TextBox();
             tex.Location = new Point(240, 0);
             tex.SetBounds(200, 0, 600, 600);
             newWebBrowser.Location = new Point(5, 43);
@@ -170,8 +169,7 @@ namespace NavegadorWeb
                 
 
             };
-            
-            //n.Click += new EventHandler(clickbuscar);
+
             myTabPage.Controls.Add(b);
             myTabPage.Controls.Add(g);
             myTabPage.Controls.Add(f);

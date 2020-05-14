@@ -17,7 +17,7 @@ namespace NavegadorWeb
     {
         WebClient Client;
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
-        List<String> historial = new List<String>();
+        List<String> historiallist = new List<String>();
         public Inicio()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace NavegadorWeb
             webBrowser1.Navigate("http://www.google.com");
             tabPage1.Text = "google.com";
             //textBox1.Text = webBrowser1.Url.ToString();
-
+            historial.Items.Add("Limpiar historial");
 
         }
         
@@ -48,11 +48,6 @@ namespace NavegadorWeb
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            
-            
-
-            
-            
            // newWebBrowser.Navigate(tex.Text);
         }
 
@@ -78,13 +73,13 @@ namespace NavegadorWeb
         {
             webBrowser1.Stop();
             tabPage1.Text = webBrowser1.Url.ToString();
-            s
+           
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             webBrowser1.Navigate(textBox1.Text);
-            
+            historial.Items.Add(textBox1.Text);
             tabPage1.Text = textBox1.Text;
         }
 
@@ -233,14 +228,26 @@ namespace NavegadorWeb
 
         private void cagarVenCompleto(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            
             textBox1.Text = webBrowser1.Url.ToString();
-           
+            
+            historial.Name = "Historial";
         }
 
         private void historial_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (historial.SelectedItem != null)
+            {
+                if(historial.SelectedItem.ToString() == "Limpiar historial")
+                {
+                    historial.Items.Clear();
+                    
+                }
+                else
+                {
+                    webBrowser1.Navigate(historial.SelectedItem.ToString());
+                }
+                
+            }
         }
     }
 

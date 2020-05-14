@@ -78,7 +78,7 @@ namespace NavegadorWeb
         {
             webBrowser1.Stop();
             tabPage1.Text = webBrowser1.Url.ToString();
-            
+            s
         }
 
         private void button7_Click(object sender, EventArgs e)

@@ -9,14 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 namespace NavegadorWeb
 {
     public partial class Inicio : Form
     {
+        
         WebClient Client;
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+       
         List<String> historiallist = new List<String>();
+       // Thread hilo;
         public Inicio()
         {
             InitializeComponent();
@@ -24,15 +28,18 @@ namespace NavegadorWeb
 
         private void Inicio_Load(object sender, EventArgs e)
         {
+            
+            
             webBrowser1.Navigate("http://www.google.com");
             tabPage1.Text = "google.com";
+            //hilo = new Thread(new ThreadStart());
             //textBox1.Text = webBrowser1.Url.ToString();
             historial.Items.Add("Limpiar historial");
+           // hilo.Start();
+            //hilo.Join();
 
         }
         
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (webBrowser1.CanGoBack)
@@ -269,7 +276,11 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(l);
             myTabPage.Controls.Add(tex);
             myTabPage.Controls.Add(newWebBrowser);
+            
+           
+            
         }
+     
 
         private void cagarVenCompleto(object sender, WebBrowserDocumentCompletedEventArgs e)
         {

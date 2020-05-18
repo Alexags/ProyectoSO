@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
-
-
+using System.IO;
 
 namespace NavegadorWeb
 {
@@ -78,9 +77,29 @@ namespace NavegadorWeb
 
         private void button7_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate(textBox1.Text);
+            
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://stackoverflow.com/questions/16642196/get-html-code-from-website-in-c-sharp");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                
+                Stream receiveStream = response.GetResponseStream();
+                StreamReader readStream = null;
+
+                if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                    readStream = new StreamReader(receiveStream);
+                else
+                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+
+                string data = readStream.ReadToEnd();
+                Console.Write(data);
+                response.Close();
+                readStream.Close();
+            }
+            /*webBrowser1.Navigate(textBox1.Text);
             historial.Items.Add(textBox1.Text);
-            tabPage1.Text = textBox1.Text;
+            tabPage1.Text = textBox1.Text;*/
         }
 
         private void button4_Click(object sender, EventArgs e)

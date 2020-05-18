@@ -78,7 +78,7 @@ namespace NavegadorWeb
         private void button7_Click(object sender, EventArgs e)
         {
             
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://stackoverflow.com/questions/16642196/get-html-code-from-website-in-c-sharp");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             
             if (response.StatusCode == HttpStatusCode.OK)
@@ -94,6 +94,9 @@ namespace NavegadorWeb
 
                 string data = readStream.ReadToEnd();
                 Console.Write(data);
+                webBrowser1.DocumentText =data;
+                webBrowser1.Navigating +=
+                    new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                 response.Close();
                 readStream.Close();
             }
@@ -101,6 +104,8 @@ namespace NavegadorWeb
             historial.Items.Add(textBox1.Text);
             tabPage1.Text = textBox1.Text;*/
         }
+
+        
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -125,7 +130,7 @@ namespace NavegadorWeb
 
         private void downloadFile()
         {
-            Console.Write("Entra");
+            
             //string file = System.IO.Path.GetFileName(url);
             WebClient cln = new WebClient();
             cln.DownloadFile("https://i1.wp.com/todoimagenescristianas.com/wp-content/uploads/2013/05/imagenes-cristianas-descargar-gratis_9.jpg", @"c:\imagenes-cristianas-descargar-gratis_9.jpg");
@@ -218,11 +223,32 @@ namespace NavegadorWeb
             };
             n.Click += delegate
             {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+
+                    Stream receiveStream = response.GetResponseStream();
+                    StreamReader readStream = null;
+
+                    if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                        readStream = new StreamReader(receiveStream);
+                    else
+                        readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+
+                    string data = readStream.ReadToEnd();
+                    Console.Write(data);
+                    newWebBrowser.DocumentText = data;
+                    newWebBrowser.Navigating +=
+                        new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                    response.Close();
+                    readStream.Close();
+                }
+                /*newWebBrowser.Navigate(tex.Text);
                 
-                newWebBrowser.Navigate(tex.Text);
-                
-                myTabPage.Text = tex.Text;
-                
+                myTabPage.Text = tex.Text;*/
+
 
             };
 
@@ -266,6 +292,22 @@ namespace NavegadorWeb
                     webBrowser1.Navigate(historial.SelectedItem.ToString());
                 }
                 
+            }
+        }
+        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            Console.Write("Entruuuu");
+            System.Windows.Forms.HtmlDocument document =
+                this.webBrowser1.Document;
+
+            if (document != null && document.All["userName"] != null &&
+                String.IsNullOrEmpty(
+                document.All["userName"].GetAttribute("value")))
+            {
+                e.Cancel = true;
+                System.Windows.Forms.MessageBox.Show(
+                    "You must enter your name before you can navigate to " +
+                    e.Url.ToString());
             }
         }
     }

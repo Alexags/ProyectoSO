@@ -20,7 +20,10 @@ namespace NavegadorWeb
         String[] cache;
         static Mutex mutex = new Mutex();
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
-       
+        TabPage myTabPage;
+        WebBrowser newWebBrowser;
+        Thread newHilo;
+
         List<String> historiallist = new List<String>();
        // Thread hilo;
         public Inicio()
@@ -159,18 +162,11 @@ namespace NavegadorWeb
 
         private void newVentana_Click(object sender, EventArgs e)
         {
-            Thread t2;
-            t2 = new Thread(new ThreadStart(cargaPaginitaa));
-            t2.IsBackground = false;
-            t2.Start();
-        }
-        public void cargaPaginitaa()
-        {
             string title = "google.com";
-            TabPage myTabPage = new TabPage(title);
+            myTabPage = new TabPage(title);
             this.tabControl1.TabPages.Insert(1, myTabPage);
             TextBox tex = new TextBox();
-            WebBrowser newWebBrowser = new WebBrowser();
+            newWebBrowser = new WebBrowser();
             Button b = new Button();
             this.tabControl1.SelectedTab = myTabPage;
 
@@ -241,7 +237,7 @@ namespace NavegadorWeb
             myTabPage.Height = this.Height - 41;
             tabControl1.Width = this.Width - 17;
             tabControl1.Height = this.Height - 41;
-            newWebBrowser.Navigate("http://www.google.com");
+            //newWebBrowser.Navigate("http://www.google.com");
             ;
             newWebBrowser.DocumentCompleted += delegate
             {
@@ -278,7 +274,13 @@ namespace NavegadorWeb
 
             };
 
-            
+            Button l = new Button();
+            l.SetBounds(805, 0, 33, 33);
+            l.Text = "+";
+            l.Click += delegate
+            {
+                newVentana_Click(sender, e);
+            };
 
             myTabPage.Controls.Add(b);
             myTabPage.Controls.Add(g);
@@ -289,6 +291,14 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(l);
             myTabPage.Controls.Add(tex);
             myTabPage.Controls.Add(newWebBrowser);
+            
+            newHilo = new Thread(new ThreadStart(cargaPaginitaa));
+            newHilo.IsBackground = false;
+            newHilo.Start();
+        }
+        public void cargaPaginitaa()
+        {
+            newWebBrowser.Navigate("http://www.google.com");
 
         }
 

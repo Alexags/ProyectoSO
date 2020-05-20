@@ -17,6 +17,8 @@ namespace NavegadorWeb
     {
         Thread t1;
         WebClient Client;
+        String[] cache;
+        static Mutex mutex = new Mutex();
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
        
         List<String> historiallist = new List<String>();
@@ -42,14 +44,7 @@ namespace NavegadorWeb
             webBrowser1.Navigate("http://www.google.com");
             tabPage1.Text = "google.com";
             historial.Items.Add("Limpiar historial");
-
-
-
-
             //textBox1.Text = webBrowser1.Url.ToString();
-
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,6 +59,12 @@ namespace NavegadorWeb
 
         }
 
+        private void recurso()
+        {
+            Console.Write("entra al recurso");
+            mutex.WaitOne();
+
+        }
         private void tabPage2_Click(object sender, EventArgs e)
         {
            // newWebBrowser.Navigate(tex.Text);

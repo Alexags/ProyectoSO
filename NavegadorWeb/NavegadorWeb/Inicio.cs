@@ -159,7 +159,13 @@ namespace NavegadorWeb
 
         private void newVentana_Click(object sender, EventArgs e)
         {
-
+            Thread t2;
+            t2 = new Thread(new ThreadStart(cargaPaginitaa));
+            t2.IsBackground = false;
+            t2.Start();
+        }
+        public void cargaPaginitaa()
+        {
             string title = "google.com";
             TabPage myTabPage = new TabPage(title);
             this.tabControl1.TabPages.Insert(1, myTabPage);
@@ -289,15 +295,6 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(l);
             myTabPage.Controls.Add(tex);
             myTabPage.Controls.Add(newWebBrowser);
-            //Thread t2;
-            //t2 = new Thread(new ThreadStart(cargaPaginita()));
-            //t2.IsBackground = false;
-            //t2.Start();
-
-        }
-        public void cargaPaginitaa()
-        {
-            webBrowser1.Navigate("http://www.google.com");
 
         }
 

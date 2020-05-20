@@ -278,13 +278,7 @@ namespace NavegadorWeb
 
             };
 
-            Button l = new Button();
-            l.SetBounds(805, 0, 33, 33);
-            l.Text = "+";
-            l.Click += delegate
-            {
-                newVentana_Click(sender, e);
-            };
+            
 
             myTabPage.Controls.Add(b);
             myTabPage.Controls.Add(g);

@@ -15,7 +15,7 @@ namespace NavegadorWeb
 {
     public partial class Inicio : Form
     {
-        
+        Thread t1;
         WebClient Client;
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
        
@@ -25,21 +25,33 @@ namespace NavegadorWeb
         {
             InitializeComponent();
         }
+      
 
+        public void cargaPaginita()
+        {
+            webBrowser1.Navigate("http://www.google.com");
+           
+        }
         private void Inicio_Load(object sender, EventArgs e)
         {
-            
-            
+
+            /* t1 = new Thread(new ThreadStart(cargaPaginita));
+             t1.IsBackground = false;
+             t1.Start();*/
+
             webBrowser1.Navigate("http://www.google.com");
             tabPage1.Text = "google.com";
-            //hilo = new Thread(new ThreadStart());
-            //textBox1.Text = webBrowser1.Url.ToString();
             historial.Items.Add("Limpiar historial");
-           // hilo.Start();
-            //hilo.Join();
+
+
+
+
+            //textBox1.Text = webBrowser1.Url.ToString();
+
+
 
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (webBrowser1.CanGoBack)
@@ -158,10 +170,10 @@ namespace NavegadorWeb
             b.SetBounds(0, 0, 33, 33);
             b.Image = Properties.Resources.flcha_I;
             b.Click += delegate
-              {
-                  if (newWebBrowser.CanGoBack)
-                      newWebBrowser.GoBack();
-              };
+            {
+                if (newWebBrowser.CanGoBack)
+                    newWebBrowser.GoBack();
+            };
 
             Button g = new Button();
             g.SetBounds(39, 0, 33, 33);
@@ -169,8 +181,8 @@ namespace NavegadorWeb
 
             g.Click += delegate
             {
-                    if (newWebBrowser.CanGoForward)
-                        newWebBrowser.GoForward();
+                if (newWebBrowser.CanGoForward)
+                    newWebBrowser.GoForward();
             };
 
             Button f = new Button();
@@ -178,10 +190,10 @@ namespace NavegadorWeb
             f.Image = Properties.Resources.curve;
 
             f.Click += delegate
-             {
+            {
 
-                 newWebBrowser.Refresh(); 
-             };
+                newWebBrowser.Refresh();
+            };
 
             Button o = new Button();
             o.SetBounds(117, 0, 33, 33);
@@ -208,7 +220,7 @@ namespace NavegadorWeb
 
             Button newVenta = new Button();
             newVenta.SetBounds(420, 0, 33, 33);
-            
+
 
             tex.Location = new Point(240, 0);
             //tex.Width = 30;
@@ -264,7 +276,7 @@ namespace NavegadorWeb
             l.Text = "+";
             l.Click += delegate
             {
-                newVentana_Click(sender,e);
+                newVentana_Click(sender, e);
             };
 
             myTabPage.Controls.Add(b);
@@ -276,11 +288,10 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(l);
             myTabPage.Controls.Add(tex);
             myTabPage.Controls.Add(newWebBrowser);
-            
-           
-            
+
+
         }
-     
+
 
         private void cagarVenCompleto(object sender, WebBrowserDocumentCompletedEventArgs e)
         {

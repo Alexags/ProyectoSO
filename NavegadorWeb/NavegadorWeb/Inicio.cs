@@ -36,12 +36,12 @@ namespace NavegadorWeb
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
-
-            /* t1 = new Thread(new ThreadStart(cargaPaginita));
+            
+             t1 = new Thread(new ThreadStart(cargaPaginita));
              t1.IsBackground = false;
-             t1.Start();*/
+             t1.Start();
 
-            webBrowser1.Navigate("http://www.google.com");
+            //webBrowser1.Navigate("http://www.google.com");
             tabPage1.Text = "google.com";
             historial.Items.Add("Limpiar historial");
             //textBox1.Text = webBrowser1.Url.ToString();
@@ -289,10 +289,17 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(l);
             myTabPage.Controls.Add(tex);
             myTabPage.Controls.Add(newWebBrowser);
-
+            //Thread t2;
+            //t2 = new Thread(new ThreadStart(cargaPaginita()));
+            //t2.IsBackground = false;
+            //t2.Start();
 
         }
+        public void cargaPaginitaa()
+        {
+            webBrowser1.Navigate("http://www.google.com");
 
+        }
 
         private void cagarVenCompleto(object sender, WebBrowserDocumentCompletedEventArgs e)
         {

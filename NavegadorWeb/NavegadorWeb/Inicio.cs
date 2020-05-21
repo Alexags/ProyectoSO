@@ -160,17 +160,153 @@ namespace NavegadorWeb
 
         private void newVentana_Click(object sender, EventArgs e)
         {
+            string title = "google.com";
+            myTabPage = new TabPage(title);
+            this.tabControl1.TabPages.Insert(1, myTabPage);
+            TextBox tex = new TextBox();
+            newWebBrowser = new WebBrowser();
+            Button b = new Button();
+            this.tabControl1.SelectedTab = myTabPage;
+
+            b.SetBounds(0, 0, 33, 33);
+            b.Image = Properties.Resources.flcha_I;
+            b.Click += delegate
+            {
+                if (newWebBrowser.CanGoBack)
+                    newWebBrowser.GoBack();
+            };
+
+            Button g = new Button();
+            g.SetBounds(39, 0, 33, 33);
+            g.Image = Properties.Resources.flecha_D;
+
+            g.Click += delegate
+            {
+                if (newWebBrowser.CanGoForward)
+                    newWebBrowser.GoForward();
+            };
+
+            Button f = new Button();
+            f.SetBounds(78, 0, 33, 33);
+            f.Image = Properties.Resources.curve;
+
+            f.Click += delegate
+            {
+
+                newWebBrowser.Refresh();
+            };
+
+            Button o = new Button();
+            o.SetBounds(117, 0, 33, 33);
+            o.Image = Properties.Resources.icon;
+            o.Click += delegate
+            {
+                newWebBrowser.Stop();
+            };
+
+            Button y = new Button();
+            y.SetBounds(156, 0, 33, 33);
+            y.Image = Properties.Resources.internet__2_;
+            y.Click += delegate
+            {
+                newWebBrowser.GoHome();
+            };
+
+
+
+            Button n = new Button();
+            n.SetBounds(770, 0, 33, 33);
+            n.Image = Properties.Resources.seo_social_web_network_internet_340_icon_icons_com_61497;
+
+
+            Button newVenta = new Button();
+            newVenta.SetBounds(420, 0, 33, 33);
+
+
+            tex.Location = new Point(240, 0);
+            //tex.Width = 30;
+            //tex.Height = 30;
+            tex.SetBounds(193, 0, 570, 150);
+            newWebBrowser.Location = new Point(5, 43);
+
+            newWebBrowser.Width = this.Width - 30;
+            newWebBrowser.Height = this.Height - 105;
+            myTabPage.Width = this.Width - 17;
+            myTabPage.Height = this.Height - 41;
+            tabControl1.Width = this.Width - 17;
+            tabControl1.Height = this.Height - 41;
+            //newWebBrowser.Navigate("http://www.google.com");
+            ;
+            newWebBrowser.DocumentCompleted += delegate
+            {
+                tex.Text = newWebBrowser.Url.ToString();
+            };
+            n.Click += delegate
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+
+                    Stream receiveStream = response.GetResponseStream();
+                    StreamReader readStream = null;
+
+                    if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                        readStream = new StreamReader(receiveStream);
+                    else
+                        readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+
+                    string data = readStream.ReadToEnd();
+                    Console.Write(data);
+                    newWebBrowser.DocumentText = data;
+                    newWebBrowser.Navigating +=
+                        new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                    response.Close();
+                    readStream.Close();
+                }
+                /*newWebBrowser.Navigate(tex.Text);
+                
+                myTabPage.Text = tex.Text;*/
+
+
+            };
+
+            Button l = new Button();
+            l.SetBounds(805, 0, 33, 33);
+            l.Text = "+";
+            l.Click += delegate
+            {
+                newVentana_Click(sender, e);
+            };
+
+            myTabPage.Controls.Add(b);
+            myTabPage.Controls.Add(g);
+            myTabPage.Controls.Add(f);
+            myTabPage.Controls.Add(o);
+            myTabPage.Controls.Add(y);
+            myTabPage.Controls.Add(n);
+            myTabPage.Controls.Add(l);
+            myTabPage.Controls.Add(tex);
+            myTabPage.Controls.Add(newWebBrowser);
+
             newHilo = new Thread(new ThreadStart(cargaPaginitaa));
             newHilo.IsBackground = false;
             newHilo.Start();
 
-            historial.Items.Add("Limpiar historial");
+
+            /*newHilo = new Thread(new ThreadStart(cargaPaginitaa));
+            newHilo.IsBackground = false;
+            newHilo.Start();
+
+            historial.Items.Add("Limpiar historial");*/
 
         }
         public void cargaPaginitaa()
         {
-            newWebBrowser = new WebBrowser();
-            elementos = new Web_Browser(this.tabControl1, this, newWebBrowser);
+            newWebBrowser.Navigate("http://www.google.com");
+            //newWebBrowser = new WebBrowser();
+            //elementos = new Web_Browser(this.tabControl1, this, newWebBrowser);
 
         }
 

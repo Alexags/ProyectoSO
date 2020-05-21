@@ -24,30 +24,34 @@ namespace NavegadorWeb
         WebBrowser newWebBrowser;
         Web_Browser elementos;
         Thread newHilo;
-
+        static int cont = 0;
+        static List<Thread> hilos = new List<Thread>();
+        static List<TabPage> tabs = new List<TabPage>();
         List<String> historiallist = new List<String>();
-       // Thread hilo;
+        // Thread hilo;
         public Inicio()
         {
             InitializeComponent();
         }
-      
+
 
         public void cargaPaginaPrincipal()
         {
             webBrowser1.Navigate("http://www.google.com");
-           
+
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
-            
-             t1 = new Thread(new ThreadStart(cargaPaginaPrincipal));
-             t1.IsBackground = false;
-             t1.Start();
 
+            t1 = new Thread(new ThreadStart(cargaPaginaPrincipal));
+            t1.Name = "Thread" + cont;
+            cont++;
+            t1.IsBackground = false;
+            t1.Start();
             tabPage1.Text = "google.com";
+            tabPage1.Name = "tab0";
             historial.Items.Add("Limpiar historial");
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,7 +68,7 @@ namespace NavegadorWeb
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
-           // newWebBrowser.Navigate(tex.Text);
+            // newWebBrowser.Navigate(tex.Text);
         }
 
         void clickbuscar(object sender, EventArgs e)
@@ -89,18 +93,18 @@ namespace NavegadorWeb
         {
             webBrowser1.Stop();
             tabPage1.Text = webBrowser1.Url.ToString();
-           
+
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            recurso();
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://es.wikipedia.org/wiki/P%C3%A1gina_web");
+            //recurso(t1);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://geeks.ms/jorge/2009/11/04/cmo-usar-caching-en-una-aplicacin-windows-wpf-o-winforms/");
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                
+
                 Stream receiveStream = response.GetResponseStream();
                 StreamReader readStream = null;
 
@@ -110,7 +114,7 @@ namespace NavegadorWeb
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                 string data = readStream.ReadToEnd();
-                webBrowser1.DocumentText =data;
+                webBrowser1.DocumentText = data;
                 webBrowser1.Navigating +=
                     new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                 response.Close();
@@ -121,7 +125,7 @@ namespace NavegadorWeb
             tabPage1.Text = textBox1.Text;*/
         }
 
-        
+
         private void button4_Click(object sender, EventArgs e)
         {
             webBrowser1.GoHome();
@@ -155,7 +159,8 @@ namespace NavegadorWeb
         {
             string title = "google.com";
             myTabPage = new TabPage(title);
-            this.tabControl1.TabPages.Insert(1, myTabPage);
+            myTabPage.Name = "tab" + cont;
+            this.tabControl1.TabPages.Insert(cont, myTabPage);
             TextBox tex = new TextBox();
             newWebBrowser = new WebBrowser();
             Button b = new Button();
@@ -204,9 +209,6 @@ namespace NavegadorWeb
             {
                 newWebBrowser.GoHome();
             };
-
-
-
             Button n = new Button();
             n.SetBounds(770, 0, 33, 33);
             n.Image = Properties.Resources.seo_social_web_network_internet_340_icon_icons_com_61497;
@@ -236,8 +238,21 @@ namespace NavegadorWeb
             };
             n.Click += delegate
             {
-                recurso();
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
+                foreach (TabPage t in tabs)
+                {
+                    if (t.Name.Equals(n.Parent.Name))
+                    {
+                        foreach(Thread h in hilos)
+                        {
+                            if (h.Name.Substring(2).Equals(t.Name.Substring(3)))
+                            {
+                                Console.WriteLine(h.Name);
+                                recurso(h);
+                            }
+                        }
+                    }
+                }
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://translate.google.com/?hl=es-419&tab=wT#view=home&op=translate&sl=en&tl=es&text=The%20Mutex%20class%20is%20very%20misunderstood%2C%20and%20Global%20mutexes%20even%20more%20so.%0A%0AWhat%20is%20good%2C%20safe%20pattern%20to%20use%20when%20creating%20Global%20mutexes%3F%0A%0AOne%20that%20will%20work%0A%0ARegardless%20of%20the%20locale%20my%20machine%20is%20in%0AIs%20guaranteed%20to%20release%20the%20mutex%20properly%0AOptionally%20does%20not%20hang%20forever%20if%20the%20mutex%20is%20not%20acquired%0ADeals%20with%20cases%20where%20other%20processes%20abandon%20the%20mutex");
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -256,7 +271,6 @@ namespace NavegadorWeb
                     newWebBrowser.Navigating +=
                         new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                     response.Close();
-                    readStream.Close();
                 }
                 /*newWebBrowser.Navigate(tex.Text);
                 
@@ -281,13 +295,15 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(n);
             myTabPage.Controls.Add(l);
             myTabPage.Controls.Add(tex);
+            //myTabPage.Name = "tab" + cont;
             myTabPage.Controls.Add(newWebBrowser);
-
+            tabs.Add(myTabPage);
             newHilo = new Thread(new ThreadStart(cargaPaginitaa));
+            newHilo.Name = "tr" + cont;
+            cont++;
             newHilo.IsBackground = false;
             newHilo.Start();
-
-
+            hilos.Add(newHilo);
             /*newHilo = new Thread(new ThreadStart(cargaPaginitaa));
             newHilo.IsBackground = false;
             newHilo.Start();
@@ -297,6 +313,8 @@ namespace NavegadorWeb
         }
         public void cargaPaginitaa()
         {
+            /*myTabPage.Controls.Add(n);
+            myTabPage.Controls.Add(newWebBrowser);*/
             newWebBrowser.Navigate("http://www.google.com");
             //newWebBrowser = new WebBrowser();
             //elementos = new Web_Browser(this.tabControl1, this, newWebBrowser);
@@ -306,7 +324,7 @@ namespace NavegadorWeb
         private void cagarVenCompleto(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             textBox1.Text = webBrowser1.Url.ToString();
-            
+
             historial.Name = "Historial";
         }
 
@@ -314,16 +332,16 @@ namespace NavegadorWeb
         {
             if (historial.SelectedItem != null)
             {
-                if(historial.SelectedItem.ToString() == "Limpiar historial")
+                if (historial.SelectedItem.ToString() == "Limpiar historial")
                 {
                     historial.Items.Clear();
-                    
+
                 }
                 else
                 {
                     webBrowser1.Navigate(historial.SelectedItem.ToString());
                 }
-                
+
             }
         }
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
@@ -340,11 +358,23 @@ namespace NavegadorWeb
                     "You must enter your name before you can navigate to " +
                     e.Url.ToString());
             }
-            
+
         }
-        private void recurso()
+        private static void recurso(Thread hilo)
         {
-            Console.WriteLine("entra al recurso web bbb");
+            Console.WriteLine(hilo.Name + "Quiere entrar al mutex");
+            try
+            {
+                mutex.WaitOne();
+                Console.WriteLine(hilo.Name + "esta siendo procesado");
+                Thread.Sleep(2000);
+                Console.WriteLine(hilo.Name + "finalizo el hilo");
+            }
+            finally
+            {
+                mutex.ReleaseMutex();
+            }
+            /*Console.WriteLine("entra al recurso web bbb");
             Console.WriteLine(mutex.WaitOne(1000));
             if (mutex.WaitOne(1000))
             {
@@ -355,7 +385,7 @@ namespace NavegadorWeb
             else
             {
                 Console.Write("no se adquiere el recurso");
-            }
+            }*/
 
         }
 

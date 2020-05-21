@@ -21,7 +21,8 @@ namespace NavegadorWeb
         static Mutex mutex = new Mutex();
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         TabPage myTabPage;
-       
+        WebBrowser newWebBrowser;
+        Web_Browser elementos;
         Thread newHilo;
 
         List<String> historiallist = new List<String>();
@@ -168,8 +169,8 @@ namespace NavegadorWeb
         }
         public void cargaPaginitaa()
         {
-            WebBrowser newWebBrowser = new WebBrowser();
-            Web_Browser elementos = new Web_Browser(this.tabControl1, this, newWebBrowser);
+            newWebBrowser = new WebBrowser();
+            elementos = new Web_Browser(this.tabControl1, this, newWebBrowser);
 
         }
 

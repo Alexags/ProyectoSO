@@ -44,8 +44,8 @@ namespace NavegadorWeb
             this.b.Image = Properties.Resources.flcha_I;
             this.b.Click += delegate
             {
-                if (this.newWebBrowser.CanGoBack)
-                    this.newWebBrowser.GoBack();
+                if (newWebBrowser.CanGoBack)
+                    newWebBrowser.GoBack();
             };
 
             this.g = new Button();
@@ -53,8 +53,8 @@ namespace NavegadorWeb
             this.g.Image = Properties.Resources.flecha_D;
             this.g.Click += delegate
             {
-                if (this.newWebBrowser.CanGoForward)
-                    this.newWebBrowser.GoForward();
+                if (newWebBrowser.CanGoForward)
+                    newWebBrowser.GoForward();
             };
 
             this.f = new Button();
@@ -63,7 +63,7 @@ namespace NavegadorWeb
             this.f.Click += delegate
             {
 
-                this.newWebBrowser.Refresh();
+                newWebBrowser.Refresh();
             };
 
             this.o = new Button();
@@ -71,7 +71,7 @@ namespace NavegadorWeb
             this.o.Image = Properties.Resources.icon;
             this.o.Click += delegate
             {
-                this.newWebBrowser.Stop();
+                newWebBrowser.Stop();
             };
 
             this.y = new Button();
@@ -79,7 +79,7 @@ namespace NavegadorWeb
             this.y.Image = Properties.Resources.internet__2_;
             this.y.Click += delegate
             {
-                this.newWebBrowser.GoHome();
+                newWebBrowser.GoHome();
             };
 
             this.n = new Button();
@@ -93,15 +93,15 @@ namespace NavegadorWeb
             this.text.SetBounds(193, 0, 570, 150);
             newWebBrowser.Location = new Point(5, 43);
 
-            this.newWebBrowser.Width = form.Width - 30;
-            this.newWebBrowser.Height = form.Height - 105;
+            newWebBrowser.Width = form.Width - 30;
+            newWebBrowser.Height = form.Height - 105;
             this.myTabPage.Width = form.Width - 17;
             this.myTabPage.Height = form.Height - 41;
             tabControl.Width = form.Width - 17;
             tabControl.Height = form.Height - 41;
-            this.newWebBrowser.Navigate("http://www.google.com");
+            newWebBrowser.Navigate("http://www.google.com");
 
-            this.newWebBrowser.DocumentCompleted += delegate
+            newWebBrowser.DocumentCompleted += delegate
             {
                 this.text.Text = newWebBrowser.Url.ToString();
             };
@@ -149,7 +149,7 @@ namespace NavegadorWeb
             this.myTabPage.Controls.Add(this.n);
             this.myTabPage.Controls.Add(this.l);
             this.myTabPage.Controls.Add(this.text);
-            this.myTabPage.Controls.Add(this.newWebBrowser);
+            this.myTabPage.Controls.Add(newWebBrowser);
 
             
 

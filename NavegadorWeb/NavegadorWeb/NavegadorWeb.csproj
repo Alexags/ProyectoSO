@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Web_Browser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

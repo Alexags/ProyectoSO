@@ -62,12 +62,6 @@ namespace NavegadorWeb
 
         }
 
-        private void recurso()
-        {
-            Console.Write("entra al recurso");
-            mutex.WaitOne();
-
-        }
         private void tabPage2_Click(object sender, EventArgs e)
         {
            // newWebBrowser.Navigate(tex.Text);
@@ -100,8 +94,8 @@ namespace NavegadorWeb
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
+            recurso();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://es.wikipedia.org/wiki/P%C3%A1gina_web");
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             
             if (response.StatusCode == HttpStatusCode.OK)
@@ -116,7 +110,6 @@ namespace NavegadorWeb
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                 string data = readStream.ReadToEnd();
-                Console.Write(data);
                 webBrowser1.DocumentText =data;
                 webBrowser1.Navigating +=
                     new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
@@ -243,6 +236,7 @@ namespace NavegadorWeb
             };
             n.Click += delegate
             {
+                recurso();
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
@@ -258,7 +252,6 @@ namespace NavegadorWeb
                         readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                     string data = readStream.ReadToEnd();
-                    Console.Write(data);
                     newWebBrowser.DocumentText = data;
                     newWebBrowser.Navigating +=
                         new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
@@ -335,7 +328,6 @@ namespace NavegadorWeb
         }
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            Console.Write("Entruuuu");
             System.Windows.Forms.HtmlDocument document =
                 this.webBrowser1.Document;
 
@@ -348,7 +340,25 @@ namespace NavegadorWeb
                     "You must enter your name before you can navigate to " +
                     e.Url.ToString());
             }
+            
         }
+        private void recurso()
+        {
+            Console.WriteLine("entra al recurso web bbb");
+            Console.WriteLine(mutex.WaitOne(1000));
+            if (mutex.WaitOne(1000))
+            {
+                Thread.Sleep(5000);
+                //código caché
+                mutex.ReleaseMutex();
+            }
+            else
+            {
+                Console.Write("no se adquiere el recurso");
+            }
+
+        }
+
     }
 
     

@@ -15,7 +15,7 @@ namespace NavegadorWeb
 {
     class Web_Browser
     {
-        WebBrowser newWebBrowser;
+        
         TabPage myTabPage;
         string title;
         TextBox text;
@@ -29,9 +29,9 @@ namespace NavegadorWeb
         Button l;
 
         
-        public Web_Browser(TabControl tabControl, Form form)
+        public Web_Browser(TabControl tabControl, Form form, WebBrowser newWebBrowser)
         {
-            this.newWebBrowser = new WebBrowser();
+            
             this.title = "google.com";
             this.myTabPage = new TabPage(this.title);
             tabControl.TabPages.Insert(1, this.myTabPage);

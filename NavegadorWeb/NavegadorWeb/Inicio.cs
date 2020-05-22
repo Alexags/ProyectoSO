@@ -236,55 +236,15 @@ namespace NavegadorWeb
             tabControl1.Width = this.Width - 17;
             tabControl1.Height = this.Height - 41;
             //newWebBrowser.Navigate("http://www.google.com");
-            ;
+            
             newWebBrowser.DocumentCompleted += delegate
             {
                 tex.Text = newWebBrowser.Url.ToString();
             };
-            n.Click += delegate {
-                ventana = true;
-                recurso(tex, newWebBrowser);
             n.Click += delegate
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
-                /*foreach (TabPage t in tabs)
-                {
-                    if (t.Name.Equals(n.Parent.Name))
-                    {
-                        foreach(Thread h in hilos)
-                        {
-                            if (h.Name.Substring(2).Equals(t.Name.Substring(3)))
-                            {
-                                Console.WriteLine(h.Name);
-                                recurso(h);
-                            }
-                        }
-                    }
-                }*/
-                //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://translate.google.com/?hl=es-419&tab=wT#view=home&op=translate&sl=en&tl=es&text=The%20Mutex%20class%20is%20very%20misunderstood%2C%20and%20Global%20mutexes%20even%20more%20so.%0A%0AWhat%20is%20good%2C%20safe%20pattern%20to%20use%20when%20creating%20Global%20mutexes%3F%0A%0AOne%20that%20will%20work%0A%0ARegardless%20of%20the%20locale%20my%20machine%20is%20in%0AIs%20guaranteed%20to%20release%20the%20mutex%20properly%0AOptionally%20does%20not%20hang%20forever%20if%20the%20mutex%20is%20not%20acquired%0ADeals%20with%20cases%20where%20other%20processes%20abandon%20the%20mutex");
-
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-
-                    Stream receiveStream = response.GetResponseStream();
-                    StreamReader readStream = null;
-
-                    if (String.IsNullOrWhiteSpace(response.CharacterSet))
-                        readStream = new StreamReader(receiveStream);
-                    else
-                        readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-
-                    string data = readStream.ReadToEnd();
-                    recurso(tex.Text, data, newWebBrowser);
-                    
-                    
-                    response.Close();
-                    readStream.Close();
-                }
-              
-
+                ventana = true;
+                recurso(tex, newWebBrowser);
             };
 
             Button l = new Button();

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Threading;
+using System.Security.Policy;
 
 namespace NavegadorWeb
 {
@@ -21,7 +22,7 @@ namespace NavegadorWeb
         static Mutex mutex = new Mutex();
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         TabPage myTabPage;
-        WebBrowser newWebBrowser;
+        static WebBrowser newWebBrowser;
         Web_Browser elementos;
         Thread newHilo;
         static int cont = 0;
@@ -29,6 +30,8 @@ namespace NavegadorWeb
         static List<TabPage> tabs = new List<TabPage>();
         List<String> historiallist = new List<String>();
         public event EventHandler FileDownload;
+        public static bool cerrojo = true;
+        static Dictionary<string, string> map = new Dictionary<string, string>();
         // Thread hilo;
         public Inicio()
         {
@@ -107,7 +110,7 @@ namespace NavegadorWeb
         {
 
             
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(textBox1.Text);
 
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -251,9 +254,8 @@ namespace NavegadorWeb
             };
             n.Click += delegate
             {
-
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
-                foreach (TabPage t in tabs)
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
+                /*foreach (TabPage t in tabs)
                 {
                     if (t.Name.Equals(n.Parent.Name))
                     {
@@ -266,7 +268,7 @@ namespace NavegadorWeb
                             }
                         }
                     }
-                }
+                }*/
                 //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://translate.google.com/?hl=es-419&tab=wT#view=home&op=translate&sl=en&tl=es&text=The%20Mutex%20class%20is%20very%20misunderstood%2C%20and%20Global%20mutexes%20even%20more%20so.%0A%0AWhat%20is%20good%2C%20safe%20pattern%20to%20use%20when%20creating%20Global%20mutexes%3F%0A%0AOne%20that%20will%20work%0A%0ARegardless%20of%20the%20locale%20my%20machine%20is%20in%0AIs%20guaranteed%20to%20release%20the%20mutex%20properly%0AOptionally%20does%20not%20hang%20forever%20if%20the%20mutex%20is%20not%20acquired%0ADeals%20with%20cases%20where%20other%20processes%20abandon%20the%20mutex");
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -283,11 +285,11 @@ namespace NavegadorWeb
                         readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                     string data = readStream.ReadToEnd();
-                    Console.Write(data);
-                    newWebBrowser.DocumentText = data;
-                    newWebBrowser.Navigating +=
-                        new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                    recurso(tex.Text, data, newWebBrowser);
+                    
+                    
                     response.Close();
+                    readStream.Close();
                 }
                 /*newWebBrowser.Navigate(tex.Text);
                 
@@ -361,24 +363,7 @@ namespace NavegadorWeb
 
             }
         }
-        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-
-            Console.Write("Entruuuu");
-            System.Windows.Forms.HtmlDocument document =
-                this.webBrowser1.Document;
-
-            if (document != null && document.All["userName"] != null &&
-                String.IsNullOrEmpty(
-                document.All["userName"].GetAttribute("value")))
-            {
-                e.Cancel = true;
-                System.Windows.Forms.MessageBox.Show(
-                    "You must enter your name before you can navigate to " +
-                    e.Url.ToString());
-            }
-
-        }
+        
 
         private void WebBrowser1_ProgressChanged(Object sender, WebBrowserProgressChangedEventArgs e)
         {
@@ -425,9 +410,42 @@ namespace NavegadorWeb
             return fileName;
 
         }
-        private static void recurso(Thread hilo)
+        private static void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            Console.WriteLine(hilo.Name + "Quiere entrar al mutex");
+            System.Windows.Forms.HtmlDocument document =
+                    newWebBrowser.Document;
+
+            if (document != null && document.All["userName"] != null &&
+                String.IsNullOrEmpty(
+                document.All["userName"].GetAttribute("value")))
+            {
+                e.Cancel = true;
+                System.Windows.Forms.MessageBox.Show(
+                    "You must enter your name before you can navigate to " +
+                    e.Url.ToString());
+            }
+
+        }
+
+        private static void recurso(string u, string html, WebBrowser browser)
+        {
+            if (cerrojo)
+            {
+                cerrojo = false;
+                if (!map.ContainsKey(u))
+                {
+                    map.Add(u, html);
+                }
+                else
+                {
+                    browser.DocumentText = html;
+                    browser.Navigating +=
+                        new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                }
+                Console.WriteLine(html);
+                cerrojo = true;
+            }
+            /*Console.WriteLine(hilo.Name + "Quiere entrar al mutex");
             try
             {
                 mutex.WaitOne();
@@ -481,6 +499,13 @@ namespace NavegadorWeb
         {
             
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 
     

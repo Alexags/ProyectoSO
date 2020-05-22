@@ -28,6 +28,7 @@ namespace NavegadorWeb
         static List<Thread> hilos = new List<Thread>();
         static List<TabPage> tabs = new List<TabPage>();
         List<String> historiallist = new List<String>();
+        public event EventHandler FileDownload;
         // Thread hilo;
         public Inicio()
         {
@@ -466,7 +467,19 @@ namespace NavegadorWeb
 
         private void descargaFiles(object sender, EventArgs e)
         {
-            MessageBox.Show("You are in the WebBrowser.FileDownload event.");
+            Console.WriteLine("You are in the WebBrowser.FileDownload event.");
+           // MessageBox.Show("You are in the WebBrowser.FileDownload event.");
+        }
+
+        private void Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+          
+
+        }
+
+        void client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        {
+            
         }
     }
 

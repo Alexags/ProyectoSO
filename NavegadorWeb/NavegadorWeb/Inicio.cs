@@ -46,7 +46,7 @@ namespace NavegadorWeb
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
-            cargaPaginaPrincipal();
+            //cargaPaginaPrincipal();
             t1 = new Thread(new ThreadStart(cargaPaginaPrincipal));
             t1.Name = "Thread" + cont;
             cont++;

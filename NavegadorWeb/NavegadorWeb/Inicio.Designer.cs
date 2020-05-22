@@ -43,12 +43,14 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.limpiarCaché = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.limpiarCaché);
             this.tabPage1.Controls.Add(this.urlDescargar);
             this.tabPage1.Controls.Add(this.descargar);
             this.tabPage1.Controls.Add(this.historial);
@@ -154,7 +156,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(572, 21);
+            this.textBox1.Size = new System.Drawing.Size(572, 30);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -213,6 +215,16 @@
             this.tabControl1.Size = new System.Drawing.Size(1136, 618);
             this.tabControl1.TabIndex = 0;
             // 
+            // limpiarCaché
+            // 
+            this.limpiarCaché.Location = new System.Drawing.Point(368, 35);
+            this.limpiarCaché.Name = "limpiarCaché";
+            this.limpiarCaché.Size = new System.Drawing.Size(96, 23);
+            this.limpiarCaché.TabIndex = 15;
+            this.limpiarCaché.Text = "Limpiar caché";
+            this.limpiarCaché.UseVisualStyleBackColor = true;
+            this.limpiarCaché.Click += new System.EventHandler(this.limpiarCaché_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,5 +261,6 @@
         private System.Windows.Forms.ComboBox historial;
         private System.Windows.Forms.Button descargar;
         private System.Windows.Forms.TextBox urlDescargar;
+        private System.Windows.Forms.Button limpiarCaché;
     }
 }

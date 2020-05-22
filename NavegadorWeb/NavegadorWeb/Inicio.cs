@@ -254,7 +254,7 @@ namespace NavegadorWeb
             };
             n.Click += delegate
             {
-                
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
                 /*foreach (TabPage t in tabs)
                 {
                     if (t.Name.Equals(n.Parent.Name))
@@ -270,8 +270,27 @@ namespace NavegadorWeb
                     }
                 }*/
                 //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://translate.google.com/?hl=es-419&tab=wT#view=home&op=translate&sl=en&tl=es&text=The%20Mutex%20class%20is%20very%20misunderstood%2C%20and%20Global%20mutexes%20even%20more%20so.%0A%0AWhat%20is%20good%2C%20safe%20pattern%20to%20use%20when%20creating%20Global%20mutexes%3F%0A%0AOne%20that%20will%20work%0A%0ARegardless%20of%20the%20locale%20my%20machine%20is%20in%0AIs%20guaranteed%20to%20release%20the%20mutex%20properly%0AOptionally%20does%20not%20hang%20forever%20if%20the%20mutex%20is%20not%20acquired%0ADeals%20with%20cases%20where%20other%20processes%20abandon%20the%20mutex");
-                recurso(tex, newWebBrowser);
-                
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+
+                    Stream receiveStream = response.GetResponseStream();
+                    StreamReader readStream = null;
+
+                    if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                        readStream = new StreamReader(receiveStream);
+                    else
+                        readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+
+                    string data = readStream.ReadToEnd();
+                    recurso(tex.Text, data, newWebBrowser);
+                    
+                    
+                    response.Close();
+                    readStream.Close();
+                }
                 /*newWebBrowser.Navigate(tex.Text);
                 
                 myTabPage.Text = tex.Text;*/
@@ -346,8 +365,9 @@ namespace NavegadorWeb
         }
         
 
-        private void WebBrowser1_ProgressChanged(Object sender, WebBrowserProgressChangedEventArgs e)
-        {
+        private void WebBrowser1_ProgressChanged(Object sender, WebBrowserProgressChangedEventArgs e) { 
+
+            
 
            /* System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
             messageBoxCS.AppendFormat("{0} = {1}", "CurrentProgress", e.CurrentProgress);
@@ -360,9 +380,9 @@ namespace NavegadorWeb
         //
         public void descargaArchivos()
         {
-
-           
-            string remoteUri = "https://eloutput.com/app/uploads-eloutput.com/2020/05/atories-descargar-instagram.jpg";
+            /*https://eloutput.com/app/uploads-eloutput.com/2020/05/atories-descargar-instagram.jpg*/
+            
+            string remoteUri = urlDescargar.Text;
             string fileName = obtenerNombre(remoteUri), myStringWebResource = null;
 
             WebClient myWebClient = new WebClient();
@@ -408,46 +428,22 @@ namespace NavegadorWeb
 
         }
 
-        private static void recurso(TextBox tex, WebBrowser browser)
+        private static void recurso(string u, string html, WebBrowser browser)
         {
-            
             if (cerrojo)
             {
                 cerrojo = false;
-                if (!map.ContainsKey(tex.Text))
+                if (!map.ContainsKey(u))
                 {
-                    Console.WriteLine("entufurjfurj");
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-
-                        Stream receiveStream = response.GetResponseStream();
-                        StreamReader readStream = null;
-
-                        if (String.IsNullOrWhiteSpace(response.CharacterSet))
-                            readStream = new StreamReader(receiveStream);
-                        else
-                            readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-
-                        string data = readStream.ReadToEnd();
-                        browser.DocumentText = data;
-                        browser.Navigating +=
-                            new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
-
-                        map.Add(tex.Text, data);
-                        response.Close();
-                        readStream.Close();
-                    }
-                    
+                    map.Add(u, html);
                 }
                 else
                 {
-                    browser.DocumentText = map[tex.Text];
+                    browser.DocumentText = html;
                     browser.Navigating +=
                         new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                 }
+                Console.WriteLine(html);
                 cerrojo = true;
             }
             /*Console.WriteLine(hilo.Name + "Quiere entrar al mutex");
@@ -507,10 +503,20 @@ namespace NavegadorWeb
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+    
+        }
+
+        private void limpiarCaché_Click(object sender, EventArgs e)
+        {
 
         }
 
-        
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 
     

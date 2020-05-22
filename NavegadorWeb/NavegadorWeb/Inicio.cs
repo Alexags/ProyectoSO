@@ -46,7 +46,7 @@ namespace NavegadorWeb
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
-
+            cargaPaginaPrincipal();
             t1 = new Thread(new ThreadStart(cargaPaginaPrincipal));
             t1.Name = "Thread" + cont;
             cont++;
@@ -136,9 +136,7 @@ namespace NavegadorWeb
                 response.Close();
                 readStream.Close();
             }
-            /*webBrowser1.Navigate(textBox1.Text);
-            historial.Items.Add(textBox1.Text);
-            tabPage1.Text = textBox1.Text;*/
+           
         }
 
 
@@ -158,18 +156,6 @@ namespace NavegadorWeb
             tabControl1.Height = this.Height - 41;
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            downloadFile();
-        }
-
-        private void downloadFile()
-        {
-            //string file = System.IO.Path.GetFileName(url);
-            WebClient cln = new WebClient();
-            cln.DownloadFile("https://i1.wp.com/todoimagenescristianas.com/wp-content/uploads/2013/05/imagenes-cristianas-descargar-gratis_9.jpg", @"c:\imagenes-cristianas-descargar-gratis_9.jpg");
-            //cln.DownloadFile(url, file);
-        }
 
         private void newVentana_Click(object sender, EventArgs e)
         {
@@ -291,10 +277,7 @@ namespace NavegadorWeb
                     response.Close();
                     readStream.Close();
                 }
-                /*newWebBrowser.Navigate(tex.Text);
-                
-                myTabPage.Text = tex.Text;*/
-
+              
 
             };
 
@@ -485,8 +468,8 @@ namespace NavegadorWeb
         }
 
         private void descargaFiles(object sender, EventArgs e)
-        {
-            Console.WriteLine("You are in the WebBrowser.FileDownload event.");
+        {   
+            Console.WriteLine("descarga evento.");
            // MessageBox.Show("You are in the WebBrowser.FileDownload event.");
         }
 

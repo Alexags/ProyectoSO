@@ -104,13 +104,11 @@ namespace NavegadorWeb
 
         private void button7_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
             
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
-=======
-            //recurso(t1);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://geeks.ms/jorge/2009/11/04/cmo-usar-caching-en-una-aplicacin-windows-wpf-o-winforms/");
->>>>>>> d8505ed57435cb5b3c6b25d8c69a8a542c9e69d6
+
+
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             if (response.StatusCode == HttpStatusCode.OK)
@@ -125,12 +123,10 @@ namespace NavegadorWeb
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                 string data = readStream.ReadToEnd();
-<<<<<<< HEAD
+
                 Console.Write(data);
                 webBrowser1.DocumentText =data;
-=======
-                webBrowser1.DocumentText = data;
->>>>>>> d8505ed57435cb5b3c6b25d8c69a8a542c9e69d6
+
                 webBrowser1.Navigating +=
                     new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                 response.Close();
@@ -254,9 +250,8 @@ namespace NavegadorWeb
             };
             n.Click += delegate
             {
-<<<<<<< HEAD
+
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
-=======
                 foreach (TabPage t in tabs)
                 {
                     if (t.Name.Equals(n.Parent.Name))
@@ -271,8 +266,8 @@ namespace NavegadorWeb
                         }
                     }
                 }
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://translate.google.com/?hl=es-419&tab=wT#view=home&op=translate&sl=en&tl=es&text=The%20Mutex%20class%20is%20very%20misunderstood%2C%20and%20Global%20mutexes%20even%20more%20so.%0A%0AWhat%20is%20good%2C%20safe%20pattern%20to%20use%20when%20creating%20Global%20mutexes%3F%0A%0AOne%20that%20will%20work%0A%0ARegardless%20of%20the%20locale%20my%20machine%20is%20in%0AIs%20guaranteed%20to%20release%20the%20mutex%20properly%0AOptionally%20does%20not%20hang%20forever%20if%20the%20mutex%20is%20not%20acquired%0ADeals%20with%20cases%20where%20other%20processes%20abandon%20the%20mutex");
->>>>>>> d8505ed57435cb5b3c6b25d8c69a8a542c9e69d6
+                //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://translate.google.com/?hl=es-419&tab=wT#view=home&op=translate&sl=en&tl=es&text=The%20Mutex%20class%20is%20very%20misunderstood%2C%20and%20Global%20mutexes%20even%20more%20so.%0A%0AWhat%20is%20good%2C%20safe%20pattern%20to%20use%20when%20creating%20Global%20mutexes%3F%0A%0AOne%20that%20will%20work%0A%0ARegardless%20of%20the%20locale%20my%20machine%20is%20in%0AIs%20guaranteed%20to%20release%20the%20mutex%20properly%0AOptionally%20does%20not%20hang%20forever%20if%20the%20mutex%20is%20not%20acquired%0ADeals%20with%20cases%20where%20other%20processes%20abandon%20the%20mutex");
+
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -381,12 +376,25 @@ namespace NavegadorWeb
                     "You must enter your name before you can navigate to " +
                     e.Url.ToString());
             }
-<<<<<<< HEAD
+
         }
+
+        private void WebBrowser1_ProgressChanged(Object sender, WebBrowserProgressChangedEventArgs e)
+        {
+
+            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            messageBoxCS.AppendFormat("{0} = {1}", "CurrentProgress", e.CurrentProgress);
+            messageBoxCS.AppendLine();
+            messageBoxCS.AppendFormat("{0} = {1}", "MaximumProgress", e.MaximumProgress);
+            messageBoxCS.AppendLine();
+            MessageBox.Show(messageBoxCS.ToString(), "ProgressChanged Event");
+        }
+
         //
         public void descargaArchivos()
         {
-       
+
+           
             string remoteUri = "https://eloutput.com/app/uploads-eloutput.com/2020/05/atories-descargar-instagram.jpg";
             string fileName = obtenerNombre(remoteUri), myStringWebResource = null;
 
@@ -413,7 +421,7 @@ namespace NavegadorWeb
                 fileName = parts[parts.Length - 1];
             else
                 fileName = hrefLink;
-=======
+            return fileName;
 
         }
         private static void recurso(Thread hilo)
@@ -442,9 +450,9 @@ namespace NavegadorWeb
             {
                 Console.Write("no se adquiere el recurso");
             }*/
->>>>>>> d8505ed57435cb5b3c6b25d8c69a8a542c9e69d6
 
-            return fileName;
+
+            
         }
         private void Prueba_Click(object sender, EventArgs e)
         {

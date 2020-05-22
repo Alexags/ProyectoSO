@@ -28,6 +28,8 @@ namespace NavegadorWeb
         static List<Thread> hilos = new List<Thread>();
         static List<TabPage> tabs = new List<TabPage>();
         List<String> historiallist = new List<String>();
+        Dictionary<string, string> map = new Dictionary<string, string>();
+        private static bool cerrojo = true;
         // Thread hilo;
         public Inicio()
         {
@@ -106,7 +108,7 @@ namespace NavegadorWeb
         {
 
             
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(textBox1.Text);
 
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -251,8 +253,8 @@ namespace NavegadorWeb
             n.Click += delegate
             {
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://docs.oracle.com/javase/7/docs/api/java/io/StringWriter.html");
-                foreach (TabPage t in tabs)
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
+                /*foreach (TabPage t in tabs)
                 {
                     if (t.Name.Equals(n.Parent.Name))
                     {
@@ -267,7 +269,7 @@ namespace NavegadorWeb
                     }
                 }
                 //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://translate.google.com/?hl=es-419&tab=wT#view=home&op=translate&sl=en&tl=es&text=The%20Mutex%20class%20is%20very%20misunderstood%2C%20and%20Global%20mutexes%20even%20more%20so.%0A%0AWhat%20is%20good%2C%20safe%20pattern%20to%20use%20when%20creating%20Global%20mutexes%3F%0A%0AOne%20that%20will%20work%0A%0ARegardless%20of%20the%20locale%20my%20machine%20is%20in%0AIs%20guaranteed%20to%20release%20the%20mutex%20properly%0AOptionally%20does%20not%20hang%20forever%20if%20the%20mutex%20is%20not%20acquired%0ADeals%20with%20cases%20where%20other%20processes%20abandon%20the%20mutex");
-
+                */
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -282,11 +284,12 @@ namespace NavegadorWeb
                         readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                     string data = readStream.ReadToEnd();
-                    Console.Write(data);
                     newWebBrowser.DocumentText = data;
                     newWebBrowser.Navigating +=
                         new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                    recurso(tex.Text, data);
                     response.Close();
+                    readStream.Close();
                 }
                 /*newWebBrowser.Navigate(tex.Text);
                 
@@ -362,8 +365,6 @@ namespace NavegadorWeb
         }
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-
-            Console.Write("Entruuuu");
             System.Windows.Forms.HtmlDocument document =
                 this.webBrowser1.Document;
 
@@ -424,42 +425,54 @@ namespace NavegadorWeb
             return fileName;
 
         }
-        private static void recurso(Thread hilo)
+        private static void recurso(string u, string html)
         {
-            Console.WriteLine(hilo.Name + "Quiere entrar al mutex");
-            try
+            Console.WriteLine("uuuurll");
+            if (cerrojo)
             {
-                mutex.WaitOne();
-                Console.WriteLine(hilo.Name + "esta siendo procesado");
-                Thread.Sleep(2000);
-                Console.WriteLine(hilo.Name + "finalizo el hilo");
+                cerrojo = false;
+                Console.WriteLine("uuuurll");
+                Console.WriteLine(u);
+                Console.WriteLine(html);
+                cerrojo = true;
             }
-            finally
-            {
-                mutex.ReleaseMutex();
-            }
-            /*Console.WriteLine("entra al recurso web bbb");
-            Console.WriteLine(mutex.WaitOne(1000));
-            if (mutex.WaitOne(1000))
-            {
-                Thread.Sleep(5000);
-                //código caché
-                mutex.ReleaseMutex();
-            }
-            else
-            {
-                Console.Write("no se adquiere el recurso");
-            }*/
-
-
-            
+            /* Console.WriteLine(hilo.Name + "Quiere entrar al mutex");
+             try
+             {
+                 mutex.WaitOne();
+                 Console.WriteLine(hilo.Name + "esta siendo procesado");
+                 Thread.Sleep(2000);
+                 Console.WriteLine(hilo.Name + "finalizo el hilo");
+             }
+             finally
+             {
+                 mutex.ReleaseMutex();
+             }
+             /*Console.WriteLine("entra al recurso web bbb");
+             Console.WriteLine(mutex.WaitOne(1000));
+             if (mutex.WaitOne(1000))
+             {
+                 Thread.Sleep(5000);
+                 //código caché
+                 mutex.ReleaseMutex();
+             }
+             else
+             {
+                 Console.Write("no se adquiere el recurso");
+             }*/
         }
+
         private void Prueba_Click(object sender, EventArgs e)
         {
             descargaArchivos();
         }
 
         private void urlDescargar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

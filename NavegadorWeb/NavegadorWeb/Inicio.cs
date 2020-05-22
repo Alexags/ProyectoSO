@@ -32,6 +32,7 @@ namespace NavegadorWeb
         List<String> historiallist = new List<String>();
         public event EventHandler FileDownload;
         public static bool cerrojo = true;
+        static bool solicitando = false;
         static bool ventana = false;
         
         static Dictionary<string, string> map = new Dictionary<string, string>();
@@ -41,11 +42,61 @@ namespace NavegadorWeb
             InitializeComponent();
         }
 
-
         public void cargaPaginaPrincipal()
         {
             webBrowser1.Navigate("http://www.google.com");
 
+        }
+        private static void recurso(TextBox tex, WebBrowser browser)
+        {
+            if (solicitando)
+            {
+                if (cerrojo)
+                {
+                    cerrojo = false;
+                    if (!map.ContainsKey(tex.Text))
+                    {
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        if (response.StatusCode == HttpStatusCode.OK)
+                        {
+                            Stream receiveStream = response.GetResponseStream();
+                            StreamReader readStream = null;
+                            if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                                readStream = new StreamReader(receiveStream);
+                            else
+                                readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                            string data = readStream.ReadToEnd();
+                            browser.DocumentText = data;
+                            browser.Navigating +=
+                                new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                            map.Add(tex.Text, data);
+                            response.Close();
+                            readStream.Close();
+                        }
+                    }
+                    else
+                    {
+                        browser.DocumentText = map[tex.Text];
+                        browser.Navigating +=
+                            new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                    }
+                    cerrojo = true;
+                }
+                solicitando = false;
+            }
+            else
+            {
+                if (ventana)
+                {
+                    newWebBrowser.Navigate("http://www.google.com");
+                }
+                else
+                {
+                    webBrowser1.Navigate("http://www.google.com");
+                }
+
+            }
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
@@ -54,11 +105,11 @@ namespace NavegadorWeb
             webBrowser1.Width = this.Width - 30;
             webBrowser1.Height = this.Height - 105;
             tabPage1.Controls.Add(webBrowser1);
-            t1 = new Thread(new ThreadStart(cargaPaginaPrincipal));
+            t1 = new Thread(new ParameterizedThreadStart(recurso));
             t1.Name = "Thread" + cont;
             cont++;
             t1.IsBackground = false;
-            t1.Start();
+            t1.Start(null);
             tabPage1.Text = "google.com";
             tabPage1.Name = "tab0";
             
@@ -109,37 +160,9 @@ namespace NavegadorWeb
 
         private void button7_Click(object sender, EventArgs e)
         {
+            solicitando = true;
             ventana = false;
             recurso(textBox1, webBrowser1);
-
-            
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(textBox1.Text);
-
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-
-                Stream receiveStream = response.GetResponseStream();
-                StreamReader readStream = null;
-
-                if (String.IsNullOrWhiteSpace(response.CharacterSet))
-                    readStream = new StreamReader(receiveStream);
-                else
-                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-
-                string data = readStream.ReadToEnd();
-
-                Console.Write(data);
-                webBrowser1.DocumentText =data;
-
-                webBrowser1.Navigating +=
-                    new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
-                response.Close();
-                readStream.Close();
-            }
-           
         }
 
 
@@ -243,6 +266,7 @@ namespace NavegadorWeb
             };
             n.Click += delegate
             {
+                solicitando = true;
                 ventana = true;
                 recurso(tex, newWebBrowser);
             };
@@ -266,7 +290,7 @@ namespace NavegadorWeb
             //myTabPage.Name = "tab" + cont;
             myTabPage.Controls.Add(newWebBrowser);
             tabs.Add(myTabPage);
-            newHilo = new Thread(new ThreadStart(cargaPaginitaa));
+            newHilo = new Thread(new ParameterizedThreadStart(recurso));
             newHilo.Name = "tr" + cont;
             cont++;
             newHilo.IsBackground = false;
@@ -385,46 +409,7 @@ namespace NavegadorWeb
 
         }
 
-        private static void recurso(TextBox tex, WebBrowser browser)
-        {
-            if (cerrojo)
-            {
-                cerrojo = false;
-                if (!map.ContainsKey(tex.Text))
-                {
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
-
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-
-                        Stream receiveStream = response.GetResponseStream();
-                        StreamReader readStream = null;
-
-                        if (String.IsNullOrWhiteSpace(response.CharacterSet))
-                            readStream = new StreamReader(receiveStream);
-                        else
-                            readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-
-                        string data = readStream.ReadToEnd();
-                        browser.DocumentText = data;
-                        browser.Navigating +=
-                            new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
-                        Console.WriteLine("entaksdjcnkajsdro");
-                        map.Add(tex.Text, data);
-                        response.Close();
-                        readStream.Close();
-                    }
-                }else
-                {
-                    browser.DocumentText = map[tex.Text];
-                    browser.Navigating +=
-                        new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
-                }
-                cerrojo = true;
-            }            
-        }
+        
         private void Prueba_Click(object sender, EventArgs e)
         {
             descargaArchivos();

@@ -30,20 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.limpiarCaché = new System.Windows.Forms.Button();
             this.urlDescargar = new System.Windows.Forms.TextBox();
             this.descargar = new System.Windows.Forms.Button();
             this.historial = new System.Windows.Forms.ComboBox();
             this.newVentana = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.limpiarCaché = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +56,6 @@
             this.tabPage1.Controls.Add(this.newVentana);
             this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.webBrowser1);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button3);
@@ -72,6 +70,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // limpiarCaché
+            // 
+            this.limpiarCaché.Location = new System.Drawing.Point(368, 35);
+            this.limpiarCaché.Name = "limpiarCaché";
+            this.limpiarCaché.Size = new System.Drawing.Size(96, 23);
+            this.limpiarCaché.TabIndex = 15;
+            this.limpiarCaché.Text = "Limpiar caché";
+            this.limpiarCaché.UseVisualStyleBackColor = true;
+            this.limpiarCaché.Click += new System.EventHandler(this.limpiarCaché_Click);
             // 
             // urlDescargar
             // 
@@ -136,19 +144,6 @@
             this.button5.TabIndex = 8;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Location = new System.Drawing.Point(4, 61);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1018, 512);
-            this.webBrowser1.TabIndex = 7;
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.cagarVenCompleto);
-            this.webBrowser1.FileDownload += new System.EventHandler(this.descargaFiles);
-            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Navigating);
-            this.webBrowser1.ProgressChanged += new System.Windows.Forms.WebBrowserProgressChangedEventHandler(this.WebBrowser1_ProgressChanged);
             // 
             // textBox1
             // 
@@ -215,16 +210,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1136, 618);
             this.tabControl1.TabIndex = 0;
             // 
-            // limpiarCaché
-            // 
-            this.limpiarCaché.Location = new System.Drawing.Point(368, 35);
-            this.limpiarCaché.Name = "limpiarCaché";
-            this.limpiarCaché.Size = new System.Drawing.Size(96, 23);
-            this.limpiarCaché.TabIndex = 15;
-            this.limpiarCaché.Text = "Limpiar caché";
-            this.limpiarCaché.UseVisualStyleBackColor = true;
-            this.limpiarCaché.Click += new System.EventHandler(this.limpiarCaché_Click);
-            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,7 +236,6 @@
         private System.Windows.Forms.Button newVentana;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;

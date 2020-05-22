@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.urlDescargar = new System.Windows.Forms.TextBox();
             this.descargar = new System.Windows.Forms.Button();
             this.historial = new System.Windows.Forms.ComboBox();
             this.newVentana = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.urlDescargar = new System.Windows.Forms.TextBox();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,14 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // urlDescargar
+            // 
+            this.urlDescargar.Location = new System.Drawing.Point(0, 37);
+            this.urlDescargar.Name = "urlDescargar";
+            this.urlDescargar.Size = new System.Drawing.Size(281, 20);
+            this.urlDescargar.TabIndex = 14;
+            this.urlDescargar.TextChanged += new System.EventHandler(this.urlDescargar_TextChanged);
             // 
             // descargar
             // 
@@ -148,6 +156,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(572, 21);
             this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button4
             // 
@@ -203,14 +212,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1136, 618);
             this.tabControl1.TabIndex = 0;
-            // 
-            // urlDescargar
-            // 
-            this.urlDescargar.Location = new System.Drawing.Point(0, 37);
-            this.urlDescargar.Name = "urlDescargar";
-            this.urlDescargar.Size = new System.Drawing.Size(281, 20);
-            this.urlDescargar.TabIndex = 14;
-            this.urlDescargar.TextChanged += new System.EventHandler(this.urlDescargar_TextChanged);
             // 
             // Inicio
             // 

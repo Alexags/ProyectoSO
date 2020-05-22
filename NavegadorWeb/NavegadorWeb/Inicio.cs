@@ -29,7 +29,7 @@ namespace NavegadorWeb
         static WebBrowser webBrowser1;
         static List<Thread> hilos = new List<Thread>();
         static List<TabPage> tabs = new List<TabPage>();
-        public static List<String> historiallist = new List<String>();
+        List<String> historiallist = new List<String>();
         public event EventHandler FileDownload;
         public static bool cerrojo = true;
         static bool solicitando = false;
@@ -277,14 +277,11 @@ namespace NavegadorWeb
                 if (historial.SelectedItem.ToString() == "Limpiar historial")
                 {
                     historial.Items.Clear();
-                    historiallist.Clear();
+
                 }
                 else
                 {
-                    solicitando = true;
-                    ventana = false;
-                    textBox1.Text = historial.SelectedItem.ToString();
-                    recurso(textBox1, webBrowser1);
+                    webBrowser1.Navigate(historial.SelectedItem.ToString());
                 }
 
             }
@@ -388,7 +385,7 @@ namespace NavegadorWeb
                             browser.Navigating +=
                                 new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                             map.Add(tex.Text, data);
-                            historiallist.Add(tex.Text);
+                        
                         response.Close();
                             readStream.Close();
                         }
@@ -459,15 +456,7 @@ namespace NavegadorWeb
 
         }
 
-        private void historial_MouseClick(object sender, MouseEventArgs e)
-        {
-            historial.Items.Clear();
-            foreach (string elemento in historiallist)
-            {
-                historial.Items.Add(elemento);
-            }
-            historial.Items.Add("Limpiar historial");
-        }
+
     }
 
     

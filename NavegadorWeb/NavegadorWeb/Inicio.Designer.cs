@@ -113,7 +113,6 @@
             this.historial.TabIndex = 12;
             this.historial.Text = "Historial";
             this.historial.SelectedIndexChanged += new System.EventHandler(this.historial_SelectedIndexChanged);
-            this.historial.MouseClick += new System.Windows.Forms.MouseEventHandler(this.historial_MouseClick);
             // 
             // newVentana
             // 

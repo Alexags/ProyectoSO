@@ -463,6 +463,11 @@ namespace NavegadorWeb
         {
 
         }
+
+        private void descargaFiles(object sender, EventArgs e)
+        {
+            MessageBox.Show("You are in the WebBrowser.FileDownload event.");
+        }
     }
 
     

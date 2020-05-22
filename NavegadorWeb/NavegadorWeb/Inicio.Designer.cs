@@ -136,6 +136,7 @@
             this.webBrowser1.Size = new System.Drawing.Size(1018, 512);
             this.webBrowser1.TabIndex = 7;
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.cagarVenCompleto);
+            this.webBrowser1.FileDownload += new System.EventHandler(this.descargaFiles);
             this.webBrowser1.ProgressChanged += new System.Windows.Forms.WebBrowserProgressChangedEventHandler(this.WebBrowser1_ProgressChanged);
             // 
             // textBox1

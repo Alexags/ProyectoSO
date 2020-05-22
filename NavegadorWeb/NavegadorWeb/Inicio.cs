@@ -474,7 +474,9 @@ namespace NavegadorWeb
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+        private void descargaFiles(object sender, EventArgs e)
+        {
+            MessageBox.Show("You are in the WebBrowser.FileDownload event.");
         }
     }
 

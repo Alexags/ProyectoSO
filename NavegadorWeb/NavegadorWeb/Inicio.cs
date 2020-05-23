@@ -364,7 +364,7 @@ namespace NavegadorWeb
         {
             /*https://eloutput.com/app/uploads-eloutput.com/2020/05/atories-descargar-instagram.jpg*/
             
-            string remoteUri = urlDescargar.Text;
+            string remoteUri = textBox1.Text;
             string fileName = obtenerNombre(remoteUri), myStringWebResource = null;
 
             WebClient myWebClient = new WebClient();

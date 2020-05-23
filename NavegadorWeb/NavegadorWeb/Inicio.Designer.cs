@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.limpiarCaché = new System.Windows.Forms.Button();
-            this.urlDescargar = new System.Windows.Forms.TextBox();
             this.descargar = new System.Windows.Forms.Button();
             this.historial = new System.Windows.Forms.ComboBox();
             this.newVentana = new System.Windows.Forms.Button();
@@ -43,7 +43,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +51,6 @@
             // 
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.limpiarCaché);
-            this.tabPage1.Controls.Add(this.urlDescargar);
             this.tabPage1.Controls.Add(this.descargar);
             this.tabPage1.Controls.Add(this.historial);
             this.tabPage1.Controls.Add(this.newVentana);
@@ -73,6 +71,17 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(833, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(32, 32);
+            this.button6.TabIndex = 17;
+            this.button6.Text = "-";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // limpiarCaché
             // 
             this.limpiarCaché.Location = new System.Drawing.Point(368, 35);
@@ -82,14 +91,6 @@
             this.limpiarCaché.Text = "Limpiar caché";
             this.limpiarCaché.UseVisualStyleBackColor = true;
             this.limpiarCaché.Click += new System.EventHandler(this.limpiarCaché_Click);
-            // 
-            // urlDescargar
-            // 
-            this.urlDescargar.Location = new System.Drawing.Point(0, 37);
-            this.urlDescargar.Name = "urlDescargar";
-            this.urlDescargar.Size = new System.Drawing.Size(281, 20);
-            this.urlDescargar.TabIndex = 14;
-            this.urlDescargar.TextChanged += new System.EventHandler(this.urlDescargar_TextChanged);
             // 
             // descargar
             // 
@@ -214,17 +215,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1136, 618);
             this.tabControl1.TabIndex = 0;
             // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(833, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(32, 32);
-            this.button6.TabIndex = 17;
-            this.button6.Text = "-";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,7 +249,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ComboBox historial;
         private System.Windows.Forms.Button descargar;
-        private System.Windows.Forms.TextBox urlDescargar;
         private System.Windows.Forms.Button limpiarCaché;
         private System.Windows.Forms.Button button6;
     }

@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using System.Security.Policy;
+using System.Web;
 
 namespace NavegadorWeb
 {
@@ -476,7 +477,7 @@ namespace NavegadorWeb
 
         private void Prueba_Click(object sender, EventArgs e)
         {
-            textBox1.Text = webBrowser1.Url.ToString();
+            textBox1.Text = HttpContext.Current.Request.Url.AbsoluteUri;
             descargaArchivos();
         }
 

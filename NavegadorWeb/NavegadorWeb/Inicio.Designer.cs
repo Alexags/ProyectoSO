@@ -43,12 +43,14 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.limpiarCaché);
             this.tabPage1.Controls.Add(this.urlDescargar);
             this.tabPage1.Controls.Add(this.descargar);
@@ -106,7 +108,7 @@
             this.historial.ForeColor = System.Drawing.SystemColors.Window;
             this.historial.FormattingEnabled = true;
             this.historial.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.historial.Location = new System.Drawing.Point(832, 2);
+            this.historial.Location = new System.Drawing.Point(873, 0);
             this.historial.Margin = new System.Windows.Forms.Padding(2);
             this.historial.Name = "historial";
             this.historial.Size = new System.Drawing.Size(190, 22);
@@ -117,6 +119,7 @@
             // 
             // newVentana
             // 
+            this.newVentana.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newVentana.Location = new System.Drawing.Point(795, 0);
             this.newVentana.Name = "newVentana";
             this.newVentana.Size = new System.Drawing.Size(32, 32);
@@ -152,7 +155,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(572, 30);
+            this.textBox1.Size = new System.Drawing.Size(572, 22);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -211,11 +214,22 @@
             this.tabControl1.Size = new System.Drawing.Size(1136, 618);
             this.tabControl1.TabIndex = 0;
             // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(833, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(32, 32);
+            this.button6.TabIndex = 17;
+            this.button6.Text = "-";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 609);
+            this.ClientSize = new System.Drawing.Size(1067, 609);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
@@ -247,5 +261,6 @@
         private System.Windows.Forms.Button descargar;
         private System.Windows.Forms.TextBox urlDescargar;
         private System.Windows.Forms.Button limpiarCaché;
+        private System.Windows.Forms.Button button6;
     }
 }

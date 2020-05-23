@@ -45,6 +45,7 @@ namespace NavegadorWeb
         public void cargaPaginaPrincipal()
         {
             webBrowser1.Navigate("http://www.google.com");
+            webBrowser1.ScriptErrorsSuppressed = true;
 
         }
         
@@ -137,13 +138,65 @@ namespace NavegadorWeb
         {
             string title = "google.com";
             myTabPage = new TabPage(title);
-            myTabPage.Name = "tab" + cont;
-            this.tabControl1.TabPages.Insert(cont, myTabPage);
+            this.tabControl1.TabPages.Add(myTabPage);
             TextBox tex = new TextBox();
             newWebBrowser = new WebBrowser();
+            newWebBrowser.ScriptErrorsSuppressed = true;
             Button b = new Button();
+            Button borrarTab = new Button();
             this.tabControl1.SelectedTab = myTabPage;
+            ComboBox hist = new ComboBox();
+            borrarTab.Text = "-";
+            borrarTab.Font = new Font("Arial", 14, FontStyle.Bold);
 
+            borrarTab.Width = 32;
+            borrarTab.Height = 32;
+            borrarTab.Location = new Point(840, 0);
+            hist.Width = 185;
+            hist.Height = 22;
+            hist.Location = new Point(875, 4);
+            hist.Text = "Historial";
+            hist.BackColor = Color.Black;
+            hist.ForeColor = Color.White;
+            hist.Items.Add("Limpiar historial");
+            newWebBrowser.ScriptErrorsSuppressed = true;
+            borrarTab.Click += delegate
+            {
+                tabControl1.TabPages.Remove(tabControl1.SelectedTab);
+                if (tabControl1.TabPages.Count == 0)
+                {
+                    Application.Exit();
+                }
+            };
+
+            hist.SelectedIndexChanged += delegate
+            {
+                if (hist.SelectedItem != null)
+                {
+                    if (hist.SelectedItem.ToString() == "Limpiar historial")
+                    {
+                        hist.Items.Clear();
+                        historiallist.Clear();
+                    }
+                    else
+                    {
+                        solicitando = true;
+                        ventana = false;
+                        tex.Text = hist.SelectedItem.ToString();
+                        recurso(tex, newWebBrowser);
+                    }
+
+                }
+            };
+            hist.MouseClick += delegate
+            {
+                hist.Items.Clear();
+                foreach (string elemento in historiallist)
+                {
+                    hist.Items.Add(elemento);
+                }
+                hist.Items.Add("Limpiar historial");
+            };
             b.SetBounds(0, 0, 33, 33);
             b.Image = Properties.Resources.flcha_I;
             b.Click += delegate
@@ -224,6 +277,7 @@ namespace NavegadorWeb
             Button l = new Button();
             l.SetBounds(805, 0, 33, 33);
             l.Text = "+";
+            l.Font = new Font("Arial", 14, FontStyle.Bold);
             l.Click += delegate
             {
                 newVentana_Click(sender, e);
@@ -237,6 +291,8 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(n);
             myTabPage.Controls.Add(l);
             myTabPage.Controls.Add(tex);
+            myTabPage.Controls.Add(hist);
+            myTabPage.Controls.Add(borrarTab);
             //myTabPage.Name = "tab" + cont;
             myTabPage.Controls.Add(newWebBrowser);
             tabs.Add(myTabPage);
@@ -388,7 +444,7 @@ namespace NavegadorWeb
                             browser.Navigating +=
                                 new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                             map.Add(tex.Text, data);
-                            historiallist.Add(tex.Text);
+                            
                         response.Close();
                             readStream.Close();
                         }
@@ -399,6 +455,7 @@ namespace NavegadorWeb
                         browser.Navigating +=
                             new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                     }
+                    historiallist.Add(tex.Text);
                     cerrojo = true;
                 }
                 solicitando = false;
@@ -467,6 +524,15 @@ namespace NavegadorWeb
                 historial.Items.Add(elemento);
             }
             historial.Items.Add("Limpiar historial");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Remove(tabControl1.SelectedTab);
+            if(tabControl1.TabPages.Count == 0)
+            {
+                Application.Exit();
+            }
         }
     }
 

@@ -476,6 +476,7 @@ namespace NavegadorWeb
 
         private void Prueba_Click(object sender, EventArgs e)
         {
+            textBox1.Text = webBrowser1.Url.ToString();
             descargaArchivos();
         }
 

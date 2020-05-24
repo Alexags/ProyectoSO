@@ -368,11 +368,7 @@ namespace NavegadorWeb
         //
         public void descargaArchivos()
         {
-            webBrowser1.Navigating += delegate
-            {
-
-            };
-
+            
             /*https://eloutput.com/app/uploads-eloutput.com/2020/05/atories-descargar-instagram.jpg*/
 
             string remoteUri = textBox1.Text;

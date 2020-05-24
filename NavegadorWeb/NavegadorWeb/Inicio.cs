@@ -52,6 +52,7 @@ namespace NavegadorWeb
         
         private void Inicio_Load(object sender, EventArgs e)
         {
+           
             webBrowser1 = new WebBrowser();
             webBrowser1.Location = new Point(5, 60);
             webBrowser1.Width = this.Width - 30;
@@ -66,6 +67,10 @@ namespace NavegadorWeb
             tabPage1.Name = "tab0";
             
             historial.Items.Add("Limpiar historial");
+            webBrowser1.Navigated += delegate
+            {
+                Console.WriteLine("Pagina cargada");
+            };
 
         }
 

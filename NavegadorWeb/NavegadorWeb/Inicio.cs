@@ -485,7 +485,7 @@ namespace NavegadorWeb
 
         private void Prueba_Click(object sender, EventArgs e)
         {
-            textBox1.Text = HttpContext.Current.Request.Url.AbsoluteUri;
+            //textBox1.Text = HttpContext.Current.Request.Url.AbsoluteUri;
             descargaArchivos();
         }
 

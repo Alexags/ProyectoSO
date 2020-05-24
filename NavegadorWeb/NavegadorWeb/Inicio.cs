@@ -12,6 +12,7 @@ using System.IO;
 using System.Threading;
 using System.Security.Policy;
 using System.Web;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace NavegadorWeb
 {
@@ -35,12 +36,15 @@ namespace NavegadorWeb
         public static bool cerrojo = true;
         static bool solicitando = false;
         static bool ventana = false;
-        
+        WebClient myWebClient= new WebClient();
+        string url= null;
+
         static Dictionary<string, string> map = new Dictionary<string, string>();
         // Thread hilo;
         public Inicio()
         {
             InitializeComponent();
+            
         }
 
         public void cargaPaginaPrincipal()
@@ -71,6 +75,9 @@ namespace NavegadorWeb
             {
                 Console.WriteLine("Pagina cargada");
             };
+
+            myWebClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(cargando);
+            myWebClient.DownloadFileCompleted += new AsyncCompletedEventHandler(descargando);
 
         }
 
@@ -371,12 +378,12 @@ namespace NavegadorWeb
             
             /*https://eloutput.com/app/uploads-eloutput.com/2020/05/atories-descargar-instagram.jpg*/
 
-            string remoteUri = textBox1.Text;
-            string fileName = obtenerNombre(remoteUri), myStringWebResource = null;
+            url = textBox1.Text;
+            string fileName = obtenerNombre(url), myStringWebResource = null;
 
-            WebClient myWebClient = new WebClient();
+            myWebClient = new WebClient();
 
-            myStringWebResource = remoteUri /*+ fileName*/;
+            myStringWebResource = url /*+ fileName*/;
             Console.WriteLine("Downloading File \"{0}\" from \"{1}\" .......\n\n", fileName, myStringWebResource);
             // Download the Web resource and save it into the current filesystem folder.
             myWebClient.DownloadFile(myStringWebResource, fileName);
@@ -485,8 +492,15 @@ namespace NavegadorWeb
 
         private void Prueba_Click(object sender, EventArgs e)
         {
-            //textBox1.Text = HttpContext.Current.Request.Url.AbsoluteUri;
-            descargaArchivos();
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Todos los archivos|*.*";
+            dialog.FileName = textBox1.Text.Substring(textBox1.Text.LastIndexOf("/") + 1);
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                url = dialog.FileName;
+                myWebClient.DownloadFileAsync(new Uri(textBox1.Text),dialog.FileName);
+            }
+            //descargaArchivos();
         }
 
         private void urlDescargar_TextChanged(object sender, EventArgs e)
@@ -543,6 +557,35 @@ namespace NavegadorWeb
             {
                 Application.Exit();
             }
+        }
+
+        private void cargando(object sender, DownloadProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+            label1.Text = progressBar1.Value.ToString();
+
+        }
+
+        private void descargando(object sender, AsyncCompletedEventArgs e)
+        {
+            progressBar1.Value = 0;
+            label1.Text = "0%";
+            if (MessageBox.Show("Desea abrir el archivo descargado?","Archivo descargado",MessageBoxButtons.YesNo,MessageBoxIcon.Information)==DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(url);
+
+            }
+           
+        }
+
+        private void progressBar1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

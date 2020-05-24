@@ -36,8 +36,9 @@ namespace NavegadorWeb
         public static bool cerrojo = true;
         static bool solicitando = false;
         static bool ventana = false;
-        WebClient myWebClient= new WebClient();
-        string url= null;
+        WebClient myWebClient = new WebClient();
+        string url = null;
+        Boolean semaforo = false;
 
         static Dictionary<string, string> map = new Dictionary<string, string>();
         // Thread hilo;
@@ -492,14 +493,23 @@ namespace NavegadorWeb
 
         private void Prueba_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Todos los archivos|*.*";
-            dialog.FileName = textBox1.Text.Substring(textBox1.Text.LastIndexOf("/") + 1);
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (semaforo ==true)
             {
-                url = dialog.FileName;
-                myWebClient.DownloadFileAsync(new Uri(textBox1.Text),dialog.FileName);
+
+                MessageBox.Show("No se puede descargar más de un archivo a la vez.");
             }
+            else
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Filter = "Todos los archivos|*.*";
+                dialog.FileName = textBox1.Text.Substring(textBox1.Text.LastIndexOf("/") + 1);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    url = dialog.FileName;
+                    myWebClient.DownloadFileAsync(new Uri(textBox1.Text), dialog.FileName);
+                }
+            }
+            
             //descargaArchivos();
         }
 
@@ -561,8 +571,9 @@ namespace NavegadorWeb
 
         private void cargando(object sender, DownloadProgressChangedEventArgs e)
         {
-            progressBar1.Value = e.ProgressPercentage;
-            label1.Text = progressBar1.Value.ToString();
+            progressBar1.Value = e.ProgressPercentage ;
+            label1.Text = progressBar1.Value.ToString() + "%";
+            semaforo = true;
 
         }
 
@@ -570,6 +581,7 @@ namespace NavegadorWeb
         {
             progressBar1.Value = 0;
             label1.Text = "0%";
+            semaforo = false;
             if (MessageBox.Show("Desea abrir el archivo descargado?","Archivo descargado",MessageBoxButtons.YesNo,MessageBoxIcon.Information)==DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start(url);

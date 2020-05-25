@@ -827,6 +827,7 @@ namespace NavegadorWeb
             if (MessageBox.Show("Desea abrir el archivo descargado?","Archivo descargado",MessageBoxButtons.YesNo,MessageBoxIcon.Information)==DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start(url);
+
             }
            
         }

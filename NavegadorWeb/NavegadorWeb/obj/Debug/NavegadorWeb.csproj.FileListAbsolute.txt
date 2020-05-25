@@ -1,0 +1,49 @@
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\Users\colo7\Documents\ProyectoSO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb

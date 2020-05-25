@@ -1,0 +1,39 @@
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe.config
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.pdb
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Inicio.resources
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Properties.Resources.resources
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.exe
+C:\Users\Bosco\Desktop\PROYECTO1_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.pdb
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe.config
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.pdb
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Inicio.resources
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Properties.Resources.resources
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.exe
+C:\Users\cfugu\Desktop\SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.pdb
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe.config
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.pdb
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Inicio.resources
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Properties.Resources.resources
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.exe
+C:\Users\Alexa\Desktop\Sistemas Operativos\Proyecto 2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.pdb
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe.config
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.exe
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Release\NavegadorWeb.pdb
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csprojAssemblyReference.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Inicio.resources
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.Properties.Resources.resources
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.GenerateResource.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.exe
+C:\Proyecto2_SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Release\NavegadorWeb.pdb

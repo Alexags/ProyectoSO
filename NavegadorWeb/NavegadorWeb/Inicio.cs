@@ -38,7 +38,7 @@ namespace NavegadorWeb
         static bool ventana = false;
         WebClient myWebClient = new WebClient();
         string url = null;
-        Boolean semaforo = false;
+        static bool semaforo = false;
 
         static Dictionary<string, string> map = new Dictionary<string, string>();
         // Thread hilo;

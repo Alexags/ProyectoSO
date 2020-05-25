@@ -205,6 +205,7 @@ namespace NavegadorWeb
                 desPor.Text = progress.Value.ToString() + "%";
                 semaforo = true;
             };
+
             newmyWebClient.DownloadFileCompleted += (s, es) =>
             {
                 progress.Value = 0;

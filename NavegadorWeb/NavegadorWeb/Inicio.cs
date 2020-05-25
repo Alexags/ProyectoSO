@@ -24,7 +24,7 @@ namespace NavegadorWeb
         static Mutex mutex = new Mutex();
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         TabPage myTabPage;
-        static WebBrowser newWebBrowser;
+        WebBrowser newWebBrowser;
         Web_Browser elementos;
         Thread newHilo;
         static int cont = 0;
@@ -361,7 +361,64 @@ namespace NavegadorWeb
             {
                 solicitando = true;
                 ventana = true;
-                recurso(tex, newWebBrowser);
+                
+                if (cerrojo)
+                {
+                    cerrojo = false;
+
+                    if (!map.ContainsKey(tex.Text))
+                    {
+                        if (RemoteFileExists(tex.Text) == true)
+                        {
+                            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
+                            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                            if (response.StatusCode == HttpStatusCode.OK)
+                            {
+                                Console.WriteLine("llega");
+                                Stream receiveStream = response.GetResponseStream();
+                                StreamReader readStream = null;
+                                if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                                    readStream = new StreamReader(receiveStream);
+                                else
+                                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                                string data = readStream.ReadToEnd();
+                                newWebBrowser.DocumentText = data;
+                                newWebBrowser.Navigating += (s, es) => {
+                                    System.Windows.Forms.HtmlDocument document;
+                                    document = newWebBrowser.Document;
+                                    
+                                    if (document != null && document.All["userName"] != null &&
+                                        String.IsNullOrEmpty(
+                                        document.All["userName"].GetAttribute("value")))
+                                    {
+                                        es.Cancel = true;
+                                        System.Windows.Forms.MessageBox.Show(
+                                            "You must enter your name before you can navigate to " +
+                                            es.Url.ToString());
+                                    }
+                                }; 
+                                map.Add(tex.Text, data);
+
+                                response.Close();
+                                readStream.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("La url es incorrecta.");
+                        }
+
+                    }
+                    else
+                    {
+                        newWebBrowser.DocumentText = map[tex.Text];
+                        newWebBrowser.Navigating +=
+                            new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                    }
+                    historiallist.Add(tex.Text);
+                    cerrojo = true;
+                }
+                solicitando = false;
             };
 
             Button l = new Button();
@@ -488,7 +545,7 @@ namespace NavegadorWeb
             return fileName;
 
         }
-        private static void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        private  void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             System.Windows.Forms.HtmlDocument document;
             if (ventana)
@@ -515,7 +572,7 @@ namespace NavegadorWeb
 
         
 
-        private static void recurso(TextBox tex, WebBrowser browser)
+        private  void recurso(TextBox tex, WebBrowser browser)
         {
            /* if (solicitando)
             {*/

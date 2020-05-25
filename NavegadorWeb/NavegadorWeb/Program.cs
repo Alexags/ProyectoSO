@@ -11,14 +11,8 @@ namespace NavegadorWeb
     class Program
     {
         static void Main(string[] args)
-        {
-            Thread thread = new Thread(() =>
-            {
-
-                Application.Run(new Inicio());
-            });
-            thread.ApartmentState = ApartmentState.STA;
-            thread.Start();
+        {        
+                Application.Run(new Welcome());        
         }
     }
 }

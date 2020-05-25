@@ -122,8 +122,6 @@ namespace NavegadorWeb
 
         private void button7_Click(object sender, EventArgs e)
         {
-            solicitando = true;
-            ventana = false;
             recurso(textBox1);
         }
 
@@ -363,7 +361,16 @@ namespace NavegadorWeb
             b.Click += delegate
             {
                 if (newWebBrowser.CanGoBack)
-                    newWebBrowser.GoBack();
+                {
+                    foreach (WebBrowser web in webs)
+                    {
+                        if (web.Name.Substring(3).Equals(hist.Parent.Name.Substring(3)))
+                        {
+                            web.GoBack();
+                        }
+                    }
+                }
+                    
             };
 
             Button g = new Button();
@@ -373,7 +380,16 @@ namespace NavegadorWeb
             g.Click += delegate
             {
                 if (newWebBrowser.CanGoForward)
-                    newWebBrowser.GoForward();
+                {
+                    foreach (WebBrowser web in webs)
+                    {
+                        if (web.Name.Substring(3).Equals(hist.Parent.Name.Substring(3)))
+                        {
+                            newWebBrowser.GoForward();
+                        }
+                    }
+                }
+                    
             };
 
             Button f = new Button();
@@ -382,8 +398,14 @@ namespace NavegadorWeb
 
             f.Click += delegate
             {
-
-                newWebBrowser.Refresh();
+                foreach (WebBrowser web in webs)
+                {
+                    if (web.Name.Substring(3).Equals(hist.Parent.Name.Substring(3)))
+                    {
+                        newWebBrowser.Refresh();
+                    }
+                }
+                        
             };
 
             Button o = new Button();
@@ -391,7 +413,13 @@ namespace NavegadorWeb
             o.Image = Properties.Resources.icon;
             o.Click += delegate
             {
-                newWebBrowser.Stop();
+                foreach (WebBrowser web in webs)
+                {
+                    if (web.Name.Substring(3).Equals(hist.Parent.Name.Substring(3)))
+                    {
+                        newWebBrowser.Stop();
+                    }
+                } 
             };
 
             Button y = new Button();
@@ -399,38 +427,30 @@ namespace NavegadorWeb
             y.Image = Properties.Resources.internet__2_;
             y.Click += delegate
             {
-                newWebBrowser.GoHome();
+                foreach (WebBrowser web in webs)
+                {
+                    if (web.Name.Substring(3).Equals(hist.Parent.Name.Substring(3)))
+                    {
+                        newWebBrowser.GoHome();
+                    }
+                }    
             };
             Button n = new Button();
             n.SetBounds(770, 0, 33, 33);
             n.Image = Properties.Resources.seo_social_web_network_internet_340_icon_icons_com_61497;
-
-
             Button newVenta = new Button();
             newVenta.SetBounds(420, 0, 33, 33);
-
-
             tex.Location = new Point(240, 0);
-            //tex.Width = 30;
-            //tex.Height = 30;
             tex.SetBounds(193, 0, 570, 150);
             newWebBrowser.Location = new Point(5, 60);
-
             newWebBrowser.Width = this.Width - 30;
             newWebBrowser.Height = this.Height - 105;
             myTabPage.Width = this.Width - 17;
             myTabPage.Height = this.Height - 41;
             tabControl1.Width = this.Width - 17;
             tabControl1.Height = this.Height - 41;
-            //newWebBrowser.Navigate("http://www.google.com");
-            
-            newWebBrowser.DocumentCompleted += delegate
-            {
-                tex.Text = newWebBrowser.Url.ToString();
-            };
             n.Click += delegate
             {
-                solicitando = true;
                 foreach(WebBrowser web in webs)
                 {
                     if (web.Name.Substring(3).Equals(n.Parent.Name.Substring(3)))
@@ -471,7 +491,6 @@ namespace NavegadorWeb
                                             }
                                         };
                                         map.Add(tex.Text, data);
-
                                         response.Close();
                                         readStream.Close();
                                     }
@@ -480,7 +499,6 @@ namespace NavegadorWeb
                                 {
                                     MessageBox.Show("La url es incorrecta.");
                                 }
-
                             }
                             else
                             {
@@ -530,17 +548,10 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(descar);
             myTabPage.Controls.Add(progress);
             myTabPage.Controls.Add(desPor);
-            //myTabPage.Name = "tab" + cont;
             myTabPage.Controls.Add(newWebBrowser);
             newHilo = new Thread(new ThreadStart(cargaPaginitaa));
             newHilo.IsBackground = false;
             newHilo.Start();
-            /*newHilo = new Thread(new ThreadStart(cargaPaginitaa));
-            newHilo.IsBackground = false;
-            newHilo.Start();
-
-            historial.Items.Add("Limpiar historial");*/
-
         }
         public void cargaPaginitaa()
         {

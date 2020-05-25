@@ -154,15 +154,39 @@ namespace NavegadorWeb
             myTabPage = new TabPage(title);
             this.tabControl1.TabPages.Add(myTabPage);
             TextBox tex = new TextBox();
+            WebClient newmyWebClient = new WebClient();
+            ProgressBar progress = new ProgressBar();
+            Label desPor = new Label();
             newWebBrowser = new WebBrowser();
             newWebBrowser.ScriptErrorsSuppressed = true;
             Button b = new Button();
             Button borrarTab = new Button();
+            Button descar = new Button();
+            Button limCache = new Button();
             this.tabControl1.SelectedTab = myTabPage;
             ComboBox hist = new ComboBox();
+
+            desPor.Text = "0%";
+            desPor.Width = 21;
+            desPor.Height = 13;
+            desPor.Location = new Point(182, 45);
+
+            progress.Width = 169;
+            progress.Height = 23;
+            progress.Location = new Point(7, 37);
+
+            descar.Text = "Descargar";
+            descar.Width = 75;
+            descar.Height = 23;
+            descar.Location = new Point(287, 35);
+
+            limCache.Text = "Limpiar Cache";
+            limCache.Width = 96;
+            limCache.Height = 23;
+            limCache.Location = new Point(368, 35);
+
             borrarTab.Text = "-";
             borrarTab.Font = new Font("Arial", 14, FontStyle.Bold);
-
             borrarTab.Width = 32;
             borrarTab.Height = 32;
             borrarTab.Location = new Point(840, 0);
@@ -174,6 +198,57 @@ namespace NavegadorWeb
             hist.ForeColor = Color.White;
             hist.Items.Add("Limpiar historial");
             newWebBrowser.ScriptErrorsSuppressed = true;
+
+            newmyWebClient.DownloadProgressChanged += (s, es) =>
+            {
+                progress.Value = es.ProgressPercentage ;
+                desPor.Text = progress.Value.ToString() + "%";
+                semaforo = true;
+            };
+            newmyWebClient.DownloadFileCompleted += (s, es) =>
+            {
+                progress.Value = 0;
+                desPor.Text = "0%";
+                semaforo = false;
+                if (MessageBox.Show("Desea abrir el archivo descargado?", "Archivo descargado", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(url);
+
+                }
+            };
+
+            descar.Click += delegate
+            {
+                if (semaforo == true)
+                {
+
+                    MessageBox.Show("No se puede descargar más de un archivo a la vez.");
+                }
+                else
+                {
+                    if (RemoteFileExists(tex.Text) == true)
+                    {
+                        SaveFileDialog dialog = new SaveFileDialog();
+                        dialog.Filter = "Todos los archivos|*.*";
+                        dialog.FileName = tex.Text.Substring(tex.Text.LastIndexOf("/") + 1);
+                        if (dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            url = dialog.FileName;
+                            newmyWebClient.DownloadFileAsync(new Uri(tex.Text), dialog.FileName);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La url es incorrecta.");
+                    }
+
+                }
+            };
+            limCache.Click += delegate
+            {
+                map.Clear();
+            };
+
             borrarTab.Click += delegate
             {
                 tabControl1.TabPages.Remove(tabControl1.SelectedTab);
@@ -267,7 +342,7 @@ namespace NavegadorWeb
             //tex.Width = 30;
             //tex.Height = 30;
             tex.SetBounds(193, 0, 570, 150);
-            newWebBrowser.Location = new Point(5, 43);
+            newWebBrowser.Location = new Point(5, 60);
 
             newWebBrowser.Width = this.Width - 30;
             newWebBrowser.Height = this.Height - 105;
@@ -307,6 +382,10 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(tex);
             myTabPage.Controls.Add(hist);
             myTabPage.Controls.Add(borrarTab);
+            myTabPage.Controls.Add(limCache);
+            myTabPage.Controls.Add(descar);
+            myTabPage.Controls.Add(progress);
+            myTabPage.Controls.Add(desPor);
             //myTabPage.Name = "tab" + cont;
             myTabPage.Controls.Add(newWebBrowser);
             tabs.Add(myTabPage);

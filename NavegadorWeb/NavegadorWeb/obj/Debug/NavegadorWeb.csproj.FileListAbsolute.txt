@@ -47,3 +47,13 @@ C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\Navegador
 C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
 C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
 C:\SistemasOperativos_2\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe.config
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.exe
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\bin\Debug\NavegadorWeb.pdb
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csprojAssemblyReference.cache
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Inicio.resources
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.Properties.Resources.resources
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.GenerateResource.cache
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.csproj.CoreCompileInputs.cache
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.exe
+C:\Users\colo7\Documents\Quiz-1-2-SO\ProyectoSO\NavegadorWeb\NavegadorWeb\obj\Debug\NavegadorWeb.pdb

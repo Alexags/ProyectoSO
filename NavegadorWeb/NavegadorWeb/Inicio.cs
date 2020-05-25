@@ -122,8 +122,6 @@ namespace NavegadorWeb
 
         private void button7_Click(object sender, EventArgs e)
         {
-            solicitando = true;
-            ventana = false;
             recurso(textBox1);
         }
 

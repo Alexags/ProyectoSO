@@ -30,7 +30,7 @@ namespace NavegadorWeb
         static int cont = 0;
         static WebBrowser webBrowser1;
         static List<Thread> hilos = new List<Thread>();
-        static List<TabPage> tabs = new List<TabPage>();
+        static List<WebBrowser> webs = new List<WebBrowser>();
         public static List<String> historiallist = new List<String>();
         public event EventHandler FileDownload;
         public static bool cerrojo = true;
@@ -64,12 +64,9 @@ namespace NavegadorWeb
             webBrowser1.Height = this.Height - 105;
             tabPage1.Controls.Add(webBrowser1);
             t1 = new Thread(new ThreadStart(cargaPaginaPrincipal));
-            t1.Name = "Thread" + cont;
-            cont++;
             t1.IsBackground = false;
             t1.Start();
             tabPage1.Text = "google.com";
-            tabPage1.Name = "tab0";
             
             historial.Items.Add("Limpiar historial");
             webBrowser1.Navigated += delegate
@@ -127,7 +124,7 @@ namespace NavegadorWeb
         {
             solicitando = true;
             ventana = false;
-            recurso(textBox1, webBrowser1);
+            recurso(textBox1);
         }
 
 
@@ -152,12 +149,17 @@ namespace NavegadorWeb
         {
             string title = "google.com";
             myTabPage = new TabPage(title);
+            myTabPage.Name = "tab" + cont;
             this.tabControl1.TabPages.Add(myTabPage);
             TextBox tex = new TextBox();
             WebClient newmyWebClient = new WebClient();
             ProgressBar progress = new ProgressBar();
             Label desPor = new Label();
             newWebBrowser = new WebBrowser();
+            
+            newWebBrowser.Name = "web" + cont;
+            cont++;
+            webs.Add(newWebBrowser);
             newWebBrowser.ScriptErrorsSuppressed = true;
             Button b = new Button();
             Button borrarTab = new Button();
@@ -270,10 +272,79 @@ namespace NavegadorWeb
                     }
                     else
                     {
-                        solicitando = true;
-                        ventana = false;
                         tex.Text = hist.SelectedItem.ToString();
-                        recurso(tex, newWebBrowser);
+                        foreach (WebBrowser web in webs)
+                        {
+                            if (web.Name.Substring(3).Equals(hist.Parent.Name.Substring(3)))
+                            {
+                                if (cerrojo)
+                                {
+                                    cerrojo = false;
+                                    if (!map.ContainsKey(tex.Text))
+                                    {
+                                        if (RemoteFileExists(tex.Text) == true)
+                                        {
+                                            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
+                                            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                                            if (response.StatusCode == HttpStatusCode.OK)
+                                            {
+                                                Stream receiveStream = response.GetResponseStream();
+                                                StreamReader readStream = null;
+                                                if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                                                    readStream = new StreamReader(receiveStream);
+                                                else
+                                                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                                                string data = readStream.ReadToEnd();
+                                                web.DocumentText = data;
+                                                web.Navigating += (s, es) => {
+                                                    System.Windows.Forms.HtmlDocument document;
+                                                    document = newWebBrowser.Document;
+
+                                                    if (document != null && document.All["userName"] != null &&
+                                                        String.IsNullOrEmpty(
+                                                        document.All["userName"].GetAttribute("value")))
+                                                    {
+                                                        es.Cancel = true;
+                                                        System.Windows.Forms.MessageBox.Show(
+                                                            "You must enter your name before you can navigate to " +
+                                                            es.Url.ToString());
+                                                    }
+                                                };
+                                                map.Add(tex.Text, data);
+
+                                                response.Close();
+                                                readStream.Close();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("La url es incorrecta.");
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        web.DocumentText = map[tex.Text];
+                                        web.Navigating += (s, es) => {
+                                            System.Windows.Forms.HtmlDocument document;
+                                            document = newWebBrowser.Document;
+
+                                            if (document != null && document.All["userName"] != null &&
+                                                String.IsNullOrEmpty(
+                                                document.All["userName"].GetAttribute("value")))
+                                            {
+                                                es.Cancel = true;
+                                                System.Windows.Forms.MessageBox.Show(
+                                                    "You must enter your name before you can navigate to " +
+                                                    es.Url.ToString());
+                                            }
+                                        };
+                                    }
+                                    historiallist.Add(tex.Text);
+                                    cerrojo = true;
+                                }
+                            }
+                        }
                     }
 
                 }
@@ -360,65 +431,80 @@ namespace NavegadorWeb
             n.Click += delegate
             {
                 solicitando = true;
-                ventana = true;
-                
-                if (cerrojo)
+                foreach(WebBrowser web in webs)
                 {
-                    cerrojo = false;
-
-                    if (!map.ContainsKey(tex.Text))
+                    if (web.Name.Substring(3).Equals(n.Parent.Name.Substring(3)))
                     {
-                        if (RemoteFileExists(tex.Text) == true)
+                        Console.WriteLine(web.Name.Substring(3));
+                        if (cerrojo)
                         {
-                            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
-                            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                            if (response.StatusCode == HttpStatusCode.OK)
+                            cerrojo = false;
+                            if (!map.ContainsKey(tex.Text))
                             {
-                                Console.WriteLine("llega");
-                                Stream receiveStream = response.GetResponseStream();
-                                StreamReader readStream = null;
-                                if (String.IsNullOrWhiteSpace(response.CharacterSet))
-                                    readStream = new StreamReader(receiveStream);
-                                else
-                                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-                                string data = readStream.ReadToEnd();
-                                newWebBrowser.DocumentText = data;
-                                newWebBrowser.Navigating += (s, es) => {
-                                    System.Windows.Forms.HtmlDocument document;
-                                    document = newWebBrowser.Document;
-                                    
-                                    if (document != null && document.All["userName"] != null &&
-                                        String.IsNullOrEmpty(
-                                        document.All["userName"].GetAttribute("value")))
+                                if (RemoteFileExists(tex.Text) == true)
+                                {
+                                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
+                                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                                    if (response.StatusCode == HttpStatusCode.OK)
                                     {
-                                        es.Cancel = true;
-                                        System.Windows.Forms.MessageBox.Show(
-                                            "You must enter your name before you can navigate to " +
-                                            es.Url.ToString());
+                                        Console.WriteLine("llega");
+                                        Stream receiveStream = response.GetResponseStream();
+                                        StreamReader readStream = null;
+                                        if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                                            readStream = new StreamReader(receiveStream);
+                                        else
+                                            readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                                        string data = readStream.ReadToEnd();
+                                        web.DocumentText = data;
+                                        web.Navigating += (s, es) => {
+                                            System.Windows.Forms.HtmlDocument document;
+                                            document = newWebBrowser.Document;
+
+                                            if (document != null && document.All["userName"] != null &&
+                                                String.IsNullOrEmpty(
+                                                document.All["userName"].GetAttribute("value")))
+                                            {
+                                                es.Cancel = true;
+                                                System.Windows.Forms.MessageBox.Show(
+                                                    "You must enter your name before you can navigate to " +
+                                                    es.Url.ToString());
+                                            }
+                                        };
+                                        map.Add(tex.Text, data);
+
+                                        response.Close();
+                                        readStream.Close();
                                     }
-                                }; 
-                                map.Add(tex.Text, data);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("La url es incorrecta.");
+                                }
 
-                                response.Close();
-                                readStream.Close();
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("La url es incorrecta.");
-                        }
+                            else
+                            {
+                                web.DocumentText = map[tex.Text];
+                                web.Navigating += (s, es) => {
+                                            System.Windows.Forms.HtmlDocument document;
+                                            document = newWebBrowser.Document;
 
+                                            if (document != null && document.All["userName"] != null &&
+                                                String.IsNullOrEmpty(
+                                                document.All["userName"].GetAttribute("value")))
+                                            {
+                                                es.Cancel = true;
+                                                System.Windows.Forms.MessageBox.Show(
+                                                    "You must enter your name before you can navigate to " +
+                                                    es.Url.ToString());
+                                            }
+                                        };
+                            }
+                            historiallist.Add(tex.Text);
+                            cerrojo = true;
+                        }
                     }
-                    else
-                    {
-                        newWebBrowser.DocumentText = map[tex.Text];
-                        newWebBrowser.Navigating +=
-                            new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
-                    }
-                    historiallist.Add(tex.Text);
-                    cerrojo = true;
                 }
-                solicitando = false;
             };
 
             Button l = new Button();
@@ -446,13 +532,9 @@ namespace NavegadorWeb
             myTabPage.Controls.Add(desPor);
             //myTabPage.Name = "tab" + cont;
             myTabPage.Controls.Add(newWebBrowser);
-            tabs.Add(myTabPage);
             newHilo = new Thread(new ThreadStart(cargaPaginitaa));
-            newHilo.Name = "tr" + cont;
-            cont++;
             newHilo.IsBackground = false;
             newHilo.Start();
-            hilos.Add(newHilo);
             /*newHilo = new Thread(new ThreadStart(cargaPaginitaa));
             newHilo.IsBackground = false;
             newHilo.Start();
@@ -491,7 +573,7 @@ namespace NavegadorWeb
                     solicitando = true;
                     ventana = false;
                     textBox1.Text = historial.SelectedItem.ToString();
-                    recurso(textBox1, webBrowser1);
+                    recurso(textBox1);
                 }
 
             }
@@ -548,16 +630,7 @@ namespace NavegadorWeb
         private  void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             System.Windows.Forms.HtmlDocument document;
-            if (ventana)
-            {
-                 document = newWebBrowser.Document;
-            }
-            else
-            {
-                document = webBrowser1.Document;
-            }
-            
-
+            document = webBrowser1.Document;
             if (document != null && document.All["userName"] != null &&
                 String.IsNullOrEmpty(
                 document.All["userName"].GetAttribute("value")))
@@ -572,68 +645,52 @@ namespace NavegadorWeb
 
         
 
-        private  void recurso(TextBox tex, WebBrowser browser)
+        private  void recurso(TextBox tex)
         {
-           /* if (solicitando)
-            {*/
-                if (cerrojo)
+            if (cerrojo)
+            {
+                cerrojo = false;
+
+                if (!map.ContainsKey(tex.Text))
                 {
-                    cerrojo = false;
-
-                    if (!map.ContainsKey(tex.Text))
+                    if (RemoteFileExists(tex.Text) == true)
                     {
-                        if (RemoteFileExists(tex.Text) == true)
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        if (response.StatusCode == HttpStatusCode.OK)
                         {
-                            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(tex.Text);
-                            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                            if (response.StatusCode == HttpStatusCode.OK)
-                            {
-                                Console.WriteLine("llega");
-                                Stream receiveStream = response.GetResponseStream();
-                                StreamReader readStream = null;
-                                if (String.IsNullOrWhiteSpace(response.CharacterSet))
-                                    readStream = new StreamReader(receiveStream);
-                                else
-                                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
-                                string data = readStream.ReadToEnd();
-                                browser.DocumentText = data;
-                                browser.Navigating +=
-                                    new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
-                                map.Add(tex.Text, data);
+                            Console.WriteLine("llega");
+                            Stream receiveStream = response.GetResponseStream();
+                            StreamReader readStream = null;
+                            if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                                readStream = new StreamReader(receiveStream);
+                            else
+                                readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                            string data = readStream.ReadToEnd();
+                            webBrowser1.DocumentText = data;
+                            webBrowser1.Navigating +=
+                                new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                            map.Add(tex.Text, data);
 
-                                response.Close();
-                                readStream.Close();
-                            }
+                            response.Close();
+                            readStream.Close();
                         }
-                        else
-                        {
-                             MessageBox.Show("La url es incorrecta.");
-                        }
-                    
                     }
                     else
                     {
-                        browser.DocumentText = map[tex.Text];
-                        browser.Navigating +=
-                            new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
+                            MessageBox.Show("La url es incorrecta.");
                     }
-                    historiallist.Add(tex.Text);
-                    cerrojo = true;
-                }
-                solicitando = false;
-            /*}
-            else
-            {
-                if (ventana)
-                {
-                    newWebBrowser.Navigate("http://www.google.com");
+                    
                 }
                 else
                 {
-                    webBrowser1.Navigate("http://www.google.com");
+                    webBrowser1.DocumentText = map[tex.Text];
+                    webBrowser1.Navigating +=
+                        new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
                 }
-
-            }*/
+                historiallist.Add(tex.Text);
+                cerrojo = true;
+            }
         }
         private static bool RemoteFileExists(string url)
         {
@@ -680,11 +737,6 @@ namespace NavegadorWeb
                 {
                     MessageBox.Show("La url es incorrecta.");
                 }
-              
-                
-               
-                
-
             }
             
             //descargaArchivos();
